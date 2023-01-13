@@ -1,26 +1,67 @@
+import CssBaseline from '@mui/material/CssBaseline';
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Box, ThemeProvider } from '@mui/material';
 
-function App() {
+import Container from '@mui/material/Container';
+import { themeDate } from './Theme/theme';
+import { BrowserRouter, Route, Routes, } from 'react-router-dom';
+import Main from './commponent/MainPage/Main';
+import Header from './commponent/Header/Header';
+import Footer from './commponent/Footer/Footer';
+
+
+const App = () => {
+
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+    <Box sx={[{
+      position: 'relative',
+      height: 1,
+    }, (theme) => ({ backgroundColor: theme.bgColors.lichtBlue, })]
+    } >
+      <Container maxWidth={'maxWidth'} sx={{
+        height: 1,
+        display: 'flex',
+        flexDirection: 'column',
+      }}>
+        <Box sx={[{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: 1,
+          height: 170,
+        }, (theme) => ({
+          backgroundColor: theme.bgColors.darkBlue,
+          [theme.breakpoints.up('tablet')]: { height: 370, },
+        })]
+        } />
+        <Header />
+        <Routes>
+          <Route index element={<Main />} />
+        </Routes>
+        <Footer />
+      </Container>
+    </Box>
+
   );
 }
 
-export default App;
+
+
+const AppContainer = () => {
+
+  return (
+    <React.StrictMode >
+      <BrowserRouter >
+        <ThemeProvider theme={themeDate}>
+          <CssBaseline />
+          <App />
+        </ThemeProvider>
+      </BrowserRouter>
+    </React.StrictMode>
+  );
+};
+
+export default React.memo(AppContainer);
