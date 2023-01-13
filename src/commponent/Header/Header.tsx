@@ -1,7 +1,8 @@
 import { Box, Toolbar } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
-
+import React from 'react';
 import Container from '@mui/material/Container';
+import TopBar from './TopBar/TopBar';
 
 
 
@@ -11,10 +12,8 @@ const Header = () => {
 	return (
 		<AppBar component='header' position='fixed' color='transparent' elevation={0} sx={{ backdropFilter: ' blur(10px)', zIndex: 'drawer', }}>
 			<Container maxWidth={'maxWidth'} >
-				<Box sx={{ mt: 3 }} >
-					<Toolbar disableGutters sx={{ border: 1, height: 83, }}>
-						LOGO
-					</Toolbar>
+				<Box sx={[(theme) => ({ [theme.breakpoints.up('tablet')]: { mt: 3, }, }),]} >
+					<TopBar />
 					<Toolbar sx={[{ border: 1, }, (theme) => ({ backgroundColor: theme.colors.greenBlue, })]} >
 						HEADER
 					</Toolbar>
@@ -26,4 +25,4 @@ const Header = () => {
 	);
 };
 
-export default Header;
+export default React.memo(Header);

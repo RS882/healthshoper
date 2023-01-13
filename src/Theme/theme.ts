@@ -29,7 +29,8 @@ export const themeDate = createTheme({
 		values: {
 			mobile: 0,
 			tablet: 767.98,
-			desktop: 991.98,
+			laptop: 991.98,
+			desktop: 1199.98,
 			maxWidth: 1572,
 		},
 	},

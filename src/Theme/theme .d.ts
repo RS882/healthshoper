@@ -48,16 +48,31 @@ declare module '@mui/material/styles' {
 		xl: false;
 		mobile: true; // adds the `mobile` breakpoint
 		tablet: true;
+		laptop: true;
 		desktop: true;
 		maxWidth: true;
 	}
 };
 
+// declare module '@mui/system' {
+// 	interface BreakpointOverrides {
+// 		xs: false; // removes the `xs` breakpoint
+// 		sm: false;
+// 		md: false;
+// 		lg: false;
+// 		xl: false;
+// 		mobile: true; // adds the `mobile` breakpoint
+// 		tablet: true;
+// 		desktop: true;
+// 		maxWidth: true;
+// 	}
+// }
+
 declare module '@mui/material/AppBar' {
-	export	interface AppBarPropsColorOverrides {
-			darkBlue: true;
-		}
-	};
+	export interface AppBarPropsColorOverrides {
+		darkBlue: true;
+	}
+};
 
 
 
