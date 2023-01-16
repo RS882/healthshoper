@@ -63,6 +63,7 @@ declare module '@mui/material/styles' {
 // 		xl: false;
 // 		mobile: true; // adds the `mobile` breakpoint
 // 		tablet: true;
+// 		laptop: true;
 // 		desktop: true;
 // 		maxWidth: true;
 // 	}

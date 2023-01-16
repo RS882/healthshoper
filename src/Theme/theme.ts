@@ -25,12 +25,19 @@ export const themeDate = createTheme({
 		fontFamily: `'Montserrat', sans-serif`,
 	},
 
+	// xs, extra-small: 0px
+	// sm, small: 600px
+	// md, medium: 900px
+	// lg, large: 1200px
+	// xl, extra-large: 1536px
+
+
 	breakpoints: {
 		values: {
 			mobile: 0,
-			tablet: 767.98,
-			laptop: 991.98,
-			desktop: 1199.98,
+			tablet: 767,
+			laptop: 991,
+			desktop: 1021,
 			maxWidth: 1572,
 		},
 	},

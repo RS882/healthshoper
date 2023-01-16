@@ -1,4 +1,6 @@
-export const cityArr = {
+export const telNumber: string = '012345646901';
+
+export const cityArr: { city: string[] } = {
 	"city": ["Berlin",
 		"Hamburg",
 		"München",
