@@ -11,6 +11,7 @@ const ChoseFormSelect = ({ list, ...props }: { list: string[] } & SelectAttrProp
 	const [field] = useField(props);
 	const menuItems = list.map((e, i) => <MenuItem value={e} key={e + i}>{e}</MenuItem>);
 	return (
+
 		<Select variant='standard' {...field} sx={theme => ({ color: theme.colors.blue3, fontWeight: 500 })}>
 			{menuItems}
 		</Select>

@@ -12,7 +12,7 @@ const Header = () => {
 	return (
 		<AppBar component='header' position='fixed' color='transparent' elevation={0} sx={{ backdropFilter: ' blur(10px)', zIndex: 'drawer', }}>
 			<Container maxWidth={'maxWidth'} >
-				<Box sx={[(theme) => ({ [theme.breakpoints.up('tablet')]: { mt: 3, }, }),]} >
+				<Box sx={{ mt: 3, }} >
 					<TopBar />
 					<Toolbar sx={[{ border: 1, }, (theme) => ({ backgroundColor: theme.colors.greenBlue, })]} >
 						HEADER

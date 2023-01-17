@@ -7,10 +7,7 @@ import { cityArr } from './cityList';
 
 const ChooseICity = () => {
 	return (
-		<Box justifyContent='flex-end' sx={{
-			// border: 1,
-			display: 'flex', height: 1, alignItems: 'center'
-		}}>
+		<Box justifyContent='flex-end' sx={{ display: 'flex', alignItems: 'center' }}>
 			<LocationOnIcon color='warning' />
 			<ChooseForm list={cityArr.city} />
 		</Box>

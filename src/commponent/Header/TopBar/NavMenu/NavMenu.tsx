@@ -3,7 +3,7 @@ import Grid from '@mui/material/Grid';
 
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@mui/material';
-import { changeFirstSimbolToUpperCase } from '../../../../Utilits/functions';
+
 
 const NavMenu: FC<{ menuItem: string[] }> = ({ menuItem }) => {
 
