@@ -1,7 +1,95 @@
-export const telNumber: string = '012345646901';
 
-export const cityArr: { city: string[] } = {
-	"city": ["Berlin",
+enum CityList {
+	"Berlin",
+	"Hamburg",
+	"München",
+	"Köln",
+	"Frankfurt am Main",
+	"Stuttgart",
+	"Düsseldorf",
+	"Dortmund",
+	"Essen",
+	"Leipzig",
+	"Bremen",
+	"Dresden",
+	"Hannover",
+	"Nürnberg",
+	"Duisburg",
+	"Bochum",
+	"Wuppertal",
+	"Bielefeld",
+	"Bonn",
+	"Münster",
+	"Karlsruhe",
+	"Mannheim",
+	"Augsburg",
+	"Wiesbaden",
+	"Gelsenkirchen",
+	"Mönchengladbach",
+	"Braunschweig",
+	"Chemnitz",
+	"Kiel",
+	"Aachen",
+	"Halle",
+	"Magdeburg",
+	"Freiburg im Breisgau",
+	"Krefeld",
+	"Lübeck",
+	"Oberhausen",
+	"Erfurt",
+	"Mainz",
+	"Rostock",
+	"Kassel",
+	"Hagen",
+	"Hamm",
+	"Saarbrücken",
+	"Mülheim an der Ruhr",
+	"Potsdam",
+	"Ludwigshafen am Rhein",
+	"Oldenburg",
+	"Leverkusen",
+	"Osnabrück",
+	"Solingen",
+	"Heidelberg",
+	"Herne",
+	"Neuss",
+	"Darmstadt",
+	"Paderborn",
+	"Regensburg",
+	"Ingolstadt",
+	"Würzburg",
+	"Fürth",
+	"Wolfsburg",
+	"Offenbach",
+	"Ulm",
+	"Heilbronn",
+	"Pforzheim",
+	"Göttingen",
+	"Bottrop",
+	"Trier",
+	"Recklinghausen",
+	"Reutlingen",
+	"Bremerhaven",
+	"Koblenz",
+	"Bergisch Gladbach",
+	"Jena",
+	"Remscheid",
+	"Erlangen",
+	"Moers",
+	"Mörs",
+	"Siegen",
+	"Hildesheim",
+	"Salzgitter",
+	"Kaiserslautern",
+};
+export type CityListType = keyof typeof CityList;
+
+export type CitysList = CityListType[];
+
+//---------------------------------------
+
+export const cityArr: CitysList =
+	["Berlin",
 		"Hamburg",
 		"München",
 		"Köln",
@@ -82,4 +170,12 @@ export const cityArr: { city: string[] } = {
 		"Hildesheim",
 		"Salzgitter",
 		"Kaiserslautern",]
-};
+
+//-------------------------
+
+
+
+// export const cityArr: { city: CitysList } = { "city": arrCity, };
+//-----------------------------------------
+
+export const telNumber: string = '012345646901';

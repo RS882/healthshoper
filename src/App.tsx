@@ -8,6 +8,8 @@ import { BrowserRouter, Route, Routes, } from 'react-router-dom';
 import Main, { styleMain } from './commponent/MainPage/Main';
 import Header from './commponent/Header/Header';
 import Footer from './commponent/Footer/Footer';
+import store from './Redux/store';
+import { Provider } from 'react-redux';
 
 
 
@@ -65,14 +67,19 @@ const AppContainer = () => {
     }
   `;
 
+
+
+
   return (
     <React.StrictMode >
       <BrowserRouter >
-        <ThemeProvider theme={themeDate}>
-          <CssBaseline />
-          <GlobalStyles styles={globalStyles} />
-          <App />
-        </ThemeProvider>
+        <Provider store={store}>
+          <ThemeProvider theme={themeDate}>
+            <CssBaseline />
+            <GlobalStyles styles={globalStyles} />
+            <App />
+          </ThemeProvider>
+        </Provider>
       </BrowserRouter>
     </React.StrictMode>
   );

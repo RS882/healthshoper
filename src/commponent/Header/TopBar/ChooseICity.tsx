@@ -9,7 +9,7 @@ const ChooseICity = () => {
 	return (
 		<Box justifyContent='flex-end' sx={{ display: 'flex', alignItems: 'center' }}>
 			<LocationOnIcon color='warning' />
-			<ChooseForm list={cityArr.city} />
+			<ChooseForm list={cityArr} />
 		</Box>
 	);
 };
