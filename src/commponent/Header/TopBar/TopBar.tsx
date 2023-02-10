@@ -30,14 +30,15 @@ const StyledBoxChoose = styled(Box)((props) => ({
 }));
 
 const TopBar = () => {
-
 	const navigate = useNavigate();
 	const [openBurger, setOpenBurger] = useState(false);
+
 
 	const onClockRequestCall = () => {
 		console.log('request');
 
 	};
+
 	const listElems = navMenuItem.map((e, i) => <ListItem key={e + i} disablePadding>
 		<ListItemButton onClick={() => {
 			navigate(`/${e}`);
@@ -45,7 +46,7 @@ const TopBar = () => {
 		}}>
 			<ListItemText primary={changeFirstSimbolToUpperCase(e)} />
 		</ListItemButton>
-	</ListItem >)
+	</ListItem >);
 
 
 
@@ -62,7 +63,7 @@ const TopBar = () => {
 				</Button>
 			</Box>
 
-			<StyledBoxChoose>	<ChooseICity /></StyledBoxChoose>
+			<StyledBox>	<ChooseICity /></StyledBox>
 
 			<StyledBox>
 				<TelNumber onClickRequestCall={onClockRequestCall} />
@@ -84,7 +85,10 @@ const TopBar = () => {
 			<Drawer
 				anchor='right'
 				open={openBurger}
-				onClose={() => setOpenBurger(false)}>
+				onClose={() => setOpenBurger(false)}
+				sx={[
+					(theme) => ({ [theme.breakpoints.up('mobile')]: { display: 'block', }, [theme.breakpoints.up('desktop')]: { display: 'none', }, })
+				]}>
 				<List >
 					<ListItem><ChooseICity /></ListItem>
 					<Divider />

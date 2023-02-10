@@ -10,45 +10,43 @@ import Header from './commponent/Header/Header';
 import Footer from './commponent/Footer/Footer';
 import store from './Redux/store';
 import { Provider } from 'react-redux';
+import Page404 from './commponent/Page404/Page404';
 
 
 
 const App = () => {
 
-
-
   return (
-
     <Box sx={[{
       position: 'relative',
-      height: 1,
+      minHeight: 1,
+      display: 'flex',
+      flexDirection: 'column',
+      '&  > main': {
+        flex: '1 1 auto',
+      }
+
     }, (theme) => ({ backgroundColor: theme.bgColors.lichtBlue, })]
     } >
-      <Container maxWidth={'maxWidth'} sx={{
-        height: 1,
-        display: 'flex',
-        flexDirection: 'column',
-      }}>
-        <Box sx={[{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          width: 1,
+      <Box sx={[{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: 1,
+      }, (theme) => ({
+        backgroundColor: theme.bgColors.darkBlue,
+        [theme.breakpoints.up('mobile')]: { height: 170, },
+        [theme.breakpoints.up('tablet')]: { height: 370, },
+      })]
+      } />
+      <Header />
+      <Routes>
+        <Route index element={<Main />} />
+        < Route path='*' element={<Page404 />} />
+      </Routes>
+      <Footer />
 
-        }, (theme) => ({
-          backgroundColor: theme.bgColors.darkBlue,
-          [theme.breakpoints.up('mobile')]: { height: 170, },
-          [theme.breakpoints.up('tablet')]: { height: 370, },
-        })]
-        } />
-        <Header />
-        <Routes>
-          <Route index element={<Main />} />
-          < Route path='*' element={<Box sx={{ mt: 60, mb: 30, fontSize: 50, zIndex: 'appBar', }}> 404 NOT FOUND</Box>} />
-        </Routes>
-        <Footer />
-      </Container>
-    </Box>
+    </Box >
 
   );
 }
@@ -63,13 +61,9 @@ const AppContainer = () => {
     height: 100%;
   };
   #root{
-    min-height:100%;
+   height:100%;
     }
   `;
-
-
-
-
   return (
     <React.StrictMode >
       <BrowserRouter >

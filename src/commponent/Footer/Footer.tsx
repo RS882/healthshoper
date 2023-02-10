@@ -6,12 +6,12 @@ import Container from '@mui/material/Container';
 const Footer = () => {
 	return (
 		<Box component='footer' sx={{
-			...styleMain,
+			fontSize: 50,
+			fontWeight: 'fontWeightBold',
+			zIndex: 'appBar',
+			border: 1,
 			backgroundColor: '#fff',
-			position: 'absolute',
-			bottom: 0,
-			left: 0,
-			width: 1,
+
 		}}>
 			<Container maxWidth={'maxWidth'} >
 				FOOTER

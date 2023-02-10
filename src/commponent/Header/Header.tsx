@@ -3,6 +3,7 @@ import AppBar from '@mui/material/AppBar';
 import React from 'react';
 import Container from '@mui/material/Container';
 import TopBar from './TopBar/TopBar';
+import BottomBar from './BottomBar/BottomBar';
 
 
 
@@ -14,10 +15,7 @@ const Header = () => {
 			<Container maxWidth={'maxWidth'} >
 				<Box sx={{ mt: 3, }} >
 					<TopBar />
-					<Toolbar sx={[{ border: 1, }, (theme) => ({ backgroundColor: theme.colors.greenBlue, })]} >
-						HEADER
-					</Toolbar>
-
+					<BottomBar />
 				</Box>
 
 			</Container>

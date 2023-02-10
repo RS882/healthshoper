@@ -26,7 +26,7 @@ export const itemsSlice = createSlice({
 
 export const { changeUsersCity, } = itemsSlice.actions;
 
-export const sUsersCity = (state: RootState) => state.items.usersCity;
+export const selUsersCity = (state: RootState) => state.items.usersCity;
 
 
 export default itemsSlice.reducer;
