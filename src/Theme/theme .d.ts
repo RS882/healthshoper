@@ -19,6 +19,7 @@ interface themeColors {
 interface themeBgColors {
 	darkBlue: React.CSSProperties['color'];
 	lichtBlue: React.CSSProperties['color'];
+	blueHeaderBg: React.CSSProperties['color'];
 };
 interface themeHandeln {
 	colors: themeColors;

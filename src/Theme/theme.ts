@@ -14,12 +14,14 @@ export const themeDate = createTheme({
 		grayBlue1: '#99A3A9',
 		grayLine: '#E0E6EC',
 		blueHover: '#53B7FF',
+
 		white: '#fff',
 		black: '#000',
 	},
 	bgColors: {
 		darkBlue: '#E1EEFB',
 		lichtBlue: '#F3F9FF',
+		blueHeaderBg: '#F1F8FF',
 	},
 	typography: {
 		fontFamily: `'Montserrat', sans-serif`,
@@ -36,8 +38,8 @@ export const themeDate = createTheme({
 		values: {
 			mobile: 0,
 			tablet: 767,
-			laptop: 991,
-			desktop: 1021,
+			laptop: 1021,
+			desktop: 1221,
 			maxWidth: 1572,
 		},
 	},

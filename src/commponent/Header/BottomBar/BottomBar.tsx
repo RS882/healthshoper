@@ -9,6 +9,7 @@ import { styled } from '@mui/material/styles';
 import ButtonBase from '@mui/material/ButtonBase';
 import { useNavigate } from 'react-router-dom';
 import ToolBarSearch from './ToolBarSearch';
+import ActionBox from './ActionBox';
 
 const StyledText = styled(Typography)`
 	font-weight: 600;
@@ -27,12 +28,13 @@ const StyledButton = styled(ButtonBase)`
 
 
 
+
 const BottomBar = () => {
 	const navigate = useNavigate();
 
 
 	return (
-		<Toolbar disableGutters sx={[{ display: 'flex', height: '65px' }, (theme) => ({ backgroundColor: theme.colors.greenBlue, })]} >
+		<Toolbar disableGutters sx={[{ display: 'flex', height: '65px' }, (theme) => ({ backgroundColor: theme.bgColors.blueHeaderBg, })]} >
 
 
 			<StyledButton
@@ -53,6 +55,8 @@ const BottomBar = () => {
 			</StyledButton>
 
 			<ToolBarSearch />
+
+			<ActionBox />
 		</Toolbar>
 	);
 };

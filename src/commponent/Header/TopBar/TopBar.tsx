@@ -20,7 +20,7 @@ import ListItemText from '@mui/material/ListItemText';
 
 const StyledBox = styled(Box)((props) => ({
 	[props.theme.breakpoints.up('mobile')]: { display: 'none', },
-	[props.theme.breakpoints.up('desktop')]: { display: 'block', },
+	[props.theme.breakpoints.up('laptop')]: { display: 'block', },
 }));
 
 const StyledBoxChoose = styled(Box)((props) => ({
@@ -78,7 +78,7 @@ const TopBar = () => {
 				color='primary'
 				onClick={() => setOpenBurger(true)}
 				sx={[
-					(theme) => ({ [theme.breakpoints.up('mobile')]: { display: 'block', }, [theme.breakpoints.up('desktop')]: { display: 'none', }, })
+					(theme) => ({ [theme.breakpoints.up('mobile')]: { display: 'block', }, [theme.breakpoints.up('laptop')]: { display: 'none', }, })
 				]}>
 				<MenuIcon />
 			</IconButton>
@@ -87,7 +87,7 @@ const TopBar = () => {
 				open={openBurger}
 				onClose={() => setOpenBurger(false)}
 				sx={[
-					(theme) => ({ [theme.breakpoints.up('mobile')]: { display: 'block', }, [theme.breakpoints.up('desktop')]: { display: 'none', }, })
+					(theme) => ({ [theme.breakpoints.up('mobile')]: { display: 'block', }, [theme.breakpoints.up('laptop')]: { display: 'none', }, })
 				]}>
 				<List >
 					<ListItem><ChooseICity /></ListItem>

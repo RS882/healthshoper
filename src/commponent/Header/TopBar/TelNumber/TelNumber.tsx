@@ -3,10 +3,11 @@ import React, { FC } from 'react';
 import Link from '@mui/material/Link';
 import { telNumber } from '../cityList';
 import { getFormatedTelNumber } from './../../../../Utilits/functions';
-
+import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import Button from '@mui/material/Button';
 import YellowDotWithArrowDown from './YellowDotWithArrowDown';
-
+import Tooltip from '@mui/material/Tooltip';
+import CallUsLink from './CallUsLink';
 
 
 const TelNumber: FC<{ onClickRequestCall: () => void }> = ({ onClickRequestCall }) => {
@@ -16,19 +17,20 @@ const TelNumber: FC<{ onClickRequestCall: () => void }> = ({ onClickRequestCall 
 	return (
 		<Box justifyContent='flex-end' sx={[{ display: 'flex', },
 		theme => ({
-			[theme.breakpoints.up('mobile')]: { flexDirection: 'column', },
+			[theme.breakpoints.up('mobile')]: {},
 			[theme.breakpoints.up('desktop')]: { flexDirection: 'row', alignItems: 'center', }
 		}),]}>
-			<Link href={`tel:${digNum}`} underline="none"
-				sx={[{ fontWeight: 500, },
-				theme => ({
-					color: theme.colors.black,
-					[theme.breakpoints.up('mobile')]: {},
-					[theme.breakpoints.up('desktop')]: {}
-				})
-				]}>
+
+			<CallUsLink digNum={digNum} mobileStyle={{ display: 'none' }} destopStyle={{ display: 'block' }}>
 				{textNum}
-			</Link>
+			</CallUsLink>
+
+			<CallUsLink digNum={digNum}
+				mobileStyle={{ display: 'flex', alignItems: 'center', justifyContent: 'center', }}
+				destopStyle={{ display: 'none' }}>
+				<LocalPhoneIcon />
+			</CallUsLink>
+
 			<Button sx={{ display: 'flex', alignItems: 'center', }} onClick={onClickRequestCall}>
 				<YellowDotWithArrowDown />
 				<Typography textTransform='none' fontWeight='500' sx={theme => ({
@@ -42,7 +44,7 @@ const TelNumber: FC<{ onClickRequestCall: () => void }> = ({ onClickRequestCall 
 				</Typography>
 			</Button>
 
-		</Box>
+		</Box >
 	);
 };
 

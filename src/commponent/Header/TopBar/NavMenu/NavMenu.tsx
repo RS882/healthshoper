@@ -9,7 +9,7 @@ const NavMenu: FC<{ menuItem: string[] }> = ({ menuItem }) => {
 
 	const navigate = useNavigate();
 	const navElem = menuItem.map((e, i) =>
-		<Grid display='flex' justifyContent='flex-end' ml={2} key={e + i}>
+		<Grid display='flex' justifyContent='flex-end' key={e + i}>
 			<Button onClick={() => navigate(`/${e}`)} sx={{ textTransform: 'none', }}>{e}</Button>
 		</Grid>)
 	return (
