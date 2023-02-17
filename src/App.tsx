@@ -14,7 +14,14 @@ import Page404 from './commponent/Page404/Page404';
 
 
 
+
+
+
 const App = () => {
+
+
+
+
 
   return (
     <Box sx={[{
@@ -56,14 +63,14 @@ const App = () => {
 const AppContainer = () => {
 
   const globalStyles = css`
-  @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;600;700&family=Inter&family=Montserrat:wght@400;500;600;700&family=Nunito&family=Source+Sans+Pro&display=swap');
-  html, body{
-    height: 100%;
+      @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;600;700&family=Inter&family=Montserrat:wght@400;500;600;700&family=Nunito&family=Source+Sans+Pro&display=swap');
+      html, body{
+        height: 100%;
   };
-  #root{
-   height:100%;
+      #root{
+        height:100%;
     }
-  `;
+      `;
   return (
     <React.StrictMode >
       <BrowserRouter >

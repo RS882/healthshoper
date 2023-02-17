@@ -5,6 +5,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import InputBase from '@mui/material/InputBase';
 import { exampleText } from './exempleText';
 import Tooltip from '@mui/material/Tooltip';
+import ActionIconBtn from './ActionIconBtn';
 
 
 
@@ -12,8 +13,7 @@ const SearchBox = styled(Box)`
 position: relative;
 	min-height:100%;
 	flex: 1 1  746px;
-	
-	display:flex;
+		display:flex;
 	`;
 const SeachInput = styled(InputBase)`
 
@@ -69,12 +69,15 @@ const ToolBarSearch = () => {
 				inputProps={{ 'aria-label': 'search' }}
 				onChange={changeHandler} value={inputText}
 			/>
-			<Tooltip title={'Search'}>
-				<SeachIconWrapper onClick={onClickSearch}>
-					<SearchIcon sx={[{ fontSize: '40px', }, (theme) => ({ color: theme.colors.blue3, })]} />
-				</SeachIconWrapper>
-				{/* {scearchElem} */}
-			</Tooltip>
+			<ActionIconBtn
+				tooltipTitle='Search'
+				onClickBtn={onClickSearch}
+				ActionIcon={SearchIcon}
+				badgeCounter={0}
+				marRigth={0}
+			/>
+
+
 		</SearchBox>
 	);
 };

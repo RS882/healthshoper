@@ -1,59 +1,44 @@
-import Box from '@mui/material/Box';
-import IconButton from '@mui/material/IconButton';
+
 import Toolbar from '@mui/material/Toolbar';
 import React from 'react';
-import MenuIcon from '@mui/icons-material/Menu';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import { styled } from '@mui/material/styles';
-import ButtonBase from '@mui/material/ButtonBase';
-import { useNavigate } from 'react-router-dom';
+
 import ToolBarSearch from './ToolBarSearch';
 import ActionBox from './ActionBox';
-
-const StyledText = styled(Typography)`
-	font-weight: 600;
-	font-size: 16px;
-	line-height: 20px;
-	letter-spacing: 0.15em;
-
-`;
-
-const StyledButton = styled(ButtonBase)`
-	display: flex;
-	min-height:100%;
-	padding: 20px 24px ;
-	text-transform:uppercase;
-`;
+import BottomBarButton from './BottomBarButton';
+import { themeDate } from './../../../Theme/theme';
+import { Box, styled } from '@mui/material';
 
 
+const BottomBox = styled(Box)((props) => ({
+	[props.theme.breakpoints.up('mobile')]: { display: 'none', },
+	[props.theme.breakpoints.up('laptop')]: { display: 'flex', },
+}));
 
 
 const BottomBar = () => {
-	const navigate = useNavigate();
+
 
 
 	return (
 		<Toolbar disableGutters sx={[{ display: 'flex', height: '65px' }, (theme) => ({ backgroundColor: theme.bgColors.blueHeaderBg, })]} >
-
-
-			<StyledButton
-				onClick={() => navigate('/catalog')}
-				sx={(theme) => ({ color: theme.colors.white, backgroundColor: theme.colors.blue1, '&:hover': { backgroundColor: theme.colors.blue3 } })}>
-				<MenuIcon sx={{ mr: 2, }} />
-				<StyledText>catalog</StyledText>
-			</StyledButton>
-			<StyledButton
-				onClick={() => navigate('/offers')}
-				sx={(theme) => ({ color: theme.colors.white, backgroundColor: theme.colors.blue2, '&:hover': { backgroundColor: theme.colors.blue1 } })}>
-				<StyledText>offers</StyledText>
-			</StyledButton>
-			<StyledButton
-				onClick={() => navigate('/brands')}
-				sx={(theme) => ({ color: theme.colors.white, backgroundColor: theme.colors.blue3, '&:hover': { backgroundColor: theme.colors.blue1 } })}>
-				<StyledText>BRANDS</StyledText>
-			</StyledButton>
-
+			<BottomBox>
+				<BottomBarButton url='/catalog'
+					bgColor={themeDate.colors.blue1!}
+					bgColorHover={themeDate.colors.blue3!}
+					isMenuIcon={true}>
+					catalog
+				</BottomBarButton>
+				<BottomBarButton url='/offers'
+					bgColor={themeDate.colors.blue2!}
+					bgColorHover={themeDate.colors.blue2!}>
+					offers
+				</BottomBarButton>
+				<BottomBarButton url='/brands'
+					bgColor={themeDate.colors.blue3!}
+					bgColorHover={themeDate.colors.blue1!}>
+					BRANDS
+				</BottomBarButton>
+			</BottomBox>
 			<ToolBarSearch />
 
 			<ActionBox />
@@ -61,4 +46,4 @@ const BottomBar = () => {
 	);
 };
 
-export default BottomBar;
+export default React.memo(BottomBar);

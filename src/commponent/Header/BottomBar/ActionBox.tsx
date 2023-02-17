@@ -4,9 +4,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Box from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
-import Badge from '@mui/material/Badge';
-import IconButton from '@mui/material/IconButton';
-import Tooltip from '@mui/material/Tooltip';
+import ActionIconBtn from './ActionIconBtn';
 
 const ActionBoxWrapper = styled(Box)`
 	display:flex;
@@ -32,25 +30,26 @@ const ActionBox = () => {
 
 	return (
 		<ActionBoxWrapper >
-			<Tooltip title='Login'>
-				<IconButton sx={{ mr: 3, }} onClick={onClickLogin}>
-					<PersonOutlineIcon sx={[{ fontSize: '40px', }, (theme) => ({ color: theme.colors.blue3, })]} />
-				</IconButton>
-			</Tooltip>
-			<Tooltip title='Favorites'>
-				<IconButton sx={{ mr: 3, }} onClick={showFavorins}>
-					<Badge badgeContent={4} color='warning' >
-						<FavoriteBorderIcon sx={[{ fontSize: '40px', }, (theme) => ({ color: theme.colors.blue3, })]} />
-					</Badge>
-				</IconButton>
-			</Tooltip>
-			<Tooltip title='Shopping Cart'>
-				<IconButton onClick={showCart}>
-					<Badge badgeContent={48} color='warning' >
-						<ShoppingCartIcon sx={[{ fontSize: '40px', }, (theme) => ({ color: theme.colors.blue3, })]} />
-					</Badge>
-				</IconButton>
-			</Tooltip>
+
+			<ActionIconBtn
+				tooltipTitle='Login'
+				onClickBtn={onClickLogin}
+				ActionIcon={PersonOutlineIcon}
+			/>
+			<ActionIconBtn
+				tooltipTitle='Favorites'
+				onClickBtn={showFavorins}
+				ActionIcon={FavoriteBorderIcon}
+				badgeCounter={4}
+			/>
+			<ActionIconBtn
+				tooltipTitle='Shopping Cart'
+				onClickBtn={showCart}
+				ActionIcon={ShoppingCartIcon}
+				badgeCounter={49}
+				marRigth={0}
+			/>
+
 		</ActionBoxWrapper>
 	);
 };

@@ -4,9 +4,9 @@ import React, { FC } from 'react';
 
 interface ICallUsLink {
 	digNum: string;
-	children: React.ReactNode
-	mobileStyle: { [property: string]: string; },
-	destopStyle: { [property: string]: string; },
+	children: React.ReactNode;
+	mobileStyle: { [property: string]: string; };
+	destopStyle: { [property: string]: string; };
 };
 
 const CallUsLink: FC<ICallUsLink> = ({ digNum, children, mobileStyle, destopStyle }) => {
