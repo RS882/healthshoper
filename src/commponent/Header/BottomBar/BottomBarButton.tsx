@@ -3,11 +3,12 @@ import { ButtonBase, Typography } from '@mui/material';
 import React, { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
+import { themeDate } from '../../../Theme/theme';
 
 interface IBottomBarButton {
 	url?: string;
-	bgColor: string;
-	bgColorHover: string;
+	bgColor?: string;
+	bgColorHover?: string;
 	isMenuIcon?: boolean;
 	children: React.ReactNode;
 	onClickBtn?: () => void;
@@ -26,9 +27,11 @@ const StyledButton = styled(ButtonBase)`
 	min-height:100%;
 	padding: 20px 24px ;
 	text-transform:uppercase;
+	width: 100%;
 `;
 
-const BottomBarButton: FC<IBottomBarButton> = ({ url = '/', bgColor, bgColorHover, children, isMenuIcon = false, onClickBtn }) => {
+const BottomBarButton: FC<IBottomBarButton> = ({ url = '/', bgColor = themeDate.colors.blue1!,
+	bgColorHover = themeDate.colors.blue3!, children, isMenuIcon = false, onClickBtn }) => {
 	const navigate = useNavigate();
 	return (
 		<StyledButton

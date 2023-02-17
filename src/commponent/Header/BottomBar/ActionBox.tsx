@@ -5,6 +5,8 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Box from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
 import ActionIconBtn from './ActionIconBtn';
+import { useAppSelector } from '../../../Redux/store';
+import { selNumberOfFarorites, selNumberOfItemInCart } from '../../../Redux/ActionSlice';
 
 const ActionBoxWrapper = styled(Box)`
 	display:flex;
@@ -17,6 +19,9 @@ const ActionBoxWrapper = styled(Box)`
 `;
 
 const ActionBox = () => {
+
+	const numberOfFavorites = useAppSelector(selNumberOfFarorites);
+	const numberOfItemInCart = useAppSelector(selNumberOfItemInCart);
 
 	const onClickLogin = () => {
 		console.log('login')
@@ -40,13 +45,13 @@ const ActionBox = () => {
 				tooltipTitle='Favorites'
 				onClickBtn={showFavorins}
 				ActionIcon={FavoriteBorderIcon}
-				badgeCounter={4}
+				badgeCounter={numberOfFavorites}
 			/>
 			<ActionIconBtn
 				tooltipTitle='Shopping Cart'
 				onClickBtn={showCart}
 				ActionIcon={ShoppingCartIcon}
-				badgeCounter={49}
+				badgeCounter={numberOfItemInCart}
 				marRigth={0}
 			/>
 

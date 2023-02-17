@@ -6,7 +6,7 @@ import ChoseFormSelect from './ChoseFormSelect';
 import AutoSubmitForFromik from '../../../FormikComponent/AutoSubmitForFromik';
 import { useAppDispatch, useAppSelector } from '../../../../Redux/store';
 import { changeUsersCity, selUsersCity } from '../../../../Redux/ItemsSlice';
-import { CitysList } from '../cityList';
+import { CitysList } from '../../../../Types/cityList';
 import { useEffect } from 'react';
 
 const ChooseForm: FC<{ list: CitysList }> = ({ list }) => {

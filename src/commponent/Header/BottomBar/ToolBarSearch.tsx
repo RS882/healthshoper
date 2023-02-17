@@ -1,10 +1,10 @@
-import { Box, Button } from '@mui/material';
+import { Box, } from '@mui/material';
 import React, { useState } from 'react';
 import { styled } from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';
 import InputBase from '@mui/material/InputBase';
 import { exampleText } from './exempleText';
-import Tooltip from '@mui/material/Tooltip';
+
 import ActionIconBtn from './ActionIconBtn';
 
 
@@ -21,14 +21,7 @@ const SeachInput = styled(InputBase)`
 	padding-left:20px;
 
 `;
-const SeachIconWrapper = styled(Button)`
-	min-height:100%;
 
-	flex:0 0 50px;
-	display:flex;
-	justify-content:center;
-	align-items:center;
-`;
 
 
 const ToolBarSearch = () => {
@@ -39,13 +32,9 @@ const ToolBarSearch = () => {
 		console.log('Search');
 		setInputText('');
 	};
-
-
 	const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setInputText(e.target.value);
 	};
-
-
 	const scearchText: string[] = inputText ? exampleText.split(` `).filter(e => e.includes(inputText)) : [];
 	const inputLength: number = inputText.length;
 	const scearchElem: JSX.Element[] = scearchText.map((e, i) => {
@@ -68,6 +57,7 @@ const ToolBarSearch = () => {
 				placeholder='What are you looking for?'
 				inputProps={{ 'aria-label': 'search' }}
 				onChange={changeHandler} value={inputText}
+				onKeyDown={e => { e.keyCode === 13 && onClickSearch() }}
 			/>
 			<ActionIconBtn
 				tooltipTitle='Search'

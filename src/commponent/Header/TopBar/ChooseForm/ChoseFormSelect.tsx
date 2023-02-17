@@ -3,7 +3,7 @@ import Select from '@mui/material/Select';
 import React from 'react';
 import { useField } from 'formik';
 import { SelectAttrProps } from '../../../../Types/formikTypes';
-import { CitysList } from '../cityList';
+import { CitysList } from '../../../../Types/cityList';
 import { useEffect } from 'react';
 
 

@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { CityListType } from '../commponent/Header/TopBar/cityList';
+import { CityListType } from '../Types/cityList';
 import { RootState } from './store';
 
 

@@ -1,6 +1,6 @@
 // The function accepts the line and if it consists of 12 digits, returns an array of the type of line of two elements-number in format "+11 111 111-11-11" 2 number in form "1111111111111"
 
-import { JsxElement } from "typescript";
+
 
 // If the length of the line is more than 12 characters and Masiav of empty lines returned in a line less than 12 digits ['', '']
 export const getFormatedTelNumber = (telNumString: string): string[] => {
@@ -22,6 +22,14 @@ export const getFormatedTelNumber = (telNumString: string): string[] => {
 // Changes the first symbol of the text to the title. All other characters become lowercaseex
 export const changeFirstSimbolToUpperCase = (text: string): string =>
 	text.toLowerCase().split('').map((e, i) => i === 0 ? e.toUpperCase() : e).join('');
+//-----------------------------------------
+// The first Elem element in the Arr array will be removed
+export const delElemFromArray = <T = string>(arr: T[], elem: T): T[] => {
+	const newState = [...arr];
+	const index = newState.indexOf(elem);
+	if (index >= 0) newState.splice(index, 1);
+	return [...newState];
+};
 
 
 

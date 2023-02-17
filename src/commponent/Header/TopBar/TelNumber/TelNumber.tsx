@@ -1,16 +1,20 @@
 import { Box, Typography } from '@mui/material';
 import React, { FC } from 'react';
 import Link from '@mui/material/Link';
-import { telNumber } from '../cityList';
+
 import { getFormatedTelNumber } from './../../../../Utilits/functions';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import Button from '@mui/material/Button';
 import YellowDotWithArrowDown from './YellowDotWithArrowDown';
 import Tooltip from '@mui/material/Tooltip';
 import CallUsLink from './CallUsLink';
+import { useAppSelector } from '../../../../Redux/store';
+import { selPhoneNummberForCall } from '../../../../Redux/StartSlice';
 
 
 const TelNumber: FC<{ onClickRequestCall: () => void }> = ({ onClickRequestCall }) => {
+
+	const telNumber = useAppSelector(selPhoneNummberForCall);
 
 	const [textNum, digNum] = getFormatedTelNumber(telNumber);
 
