@@ -1,5 +1,5 @@
 import CssBaseline from '@mui/material/CssBaseline';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Box, css, ThemeProvider } from '@mui/material';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import Container from '@mui/material/Container';
@@ -8,9 +8,10 @@ import { BrowserRouter, Route, Routes, } from 'react-router-dom';
 import Main, { styleMain } from './commponent/MainPage/Main';
 import Header from './commponent/Header/Header';
 import Footer from './commponent/Footer/Footer';
-import store from './Redux/store';
+import store, { useAppDispatch } from './Redux/store';
 import { Provider } from 'react-redux';
 import Page404 from './commponent/Page404/Page404';
+import { getPhoneNumber } from './Redux/Thunk/thunkStart';
 
 
 
@@ -19,9 +20,12 @@ import Page404 from './commponent/Page404/Page404';
 
 const App = () => {
 
+  const dispatch = useAppDispatch();
 
+  useEffect(() => {
+    dispatch(getPhoneNumber());
 
-
+  }, [])
 
   return (
     <Box sx={[{

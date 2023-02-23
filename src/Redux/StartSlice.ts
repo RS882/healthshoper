@@ -1,12 +1,17 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createAction, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { CitysList } from '../Types/cityList';
 import { RootState } from './store';
+import { getPhoneNumber } from './Thunk/thunkStart';
 
 
-interface IStartData {
-	cityList: CitysList;
-	phoneNummberForCall: string;
+export interface IPhoneNumber {
+	phoneNumber: string;
 };
+export interface ICityLis {
+	cityList: CitysList;
+};
+
+export type IStartData = IPhoneNumber & ICityLis;
 
 const initialState: IStartData = {
 	cityList: ["Berlin",
@@ -90,24 +95,29 @@ const initialState: IStartData = {
 		"Hildesheim",
 		"Salzgitter",
 		"Kaiserslautern",],
-	phoneNummberForCall: '012345646901',
+	phoneNumber: '012345646901',
 
 };
 
-
+const getTelNumber = createAction<IPhoneNumber>(getPhoneNumber.fulfilled.type);
 
 export const startSlice = createSlice({
 	name: 'start',
 	initialState,
 	reducers: {},
 
-	// extraReducers: {},
+	extraReducers: (builder) => {
+		builder
+			.addCase(getTelNumber, (state, action) => {
+				state.phoneNumber = action.payload.phoneNumber || state.phoneNumber;
+			})
+	}
 });
 
 
 export const { } = startSlice.actions;
 
 export const selCityList = (state: RootState) => state.start.cityList;
-export const selPhoneNummberForCall = (state: RootState) => state.start.phoneNummberForCall;
+export const selPhoneNummberForCall = (state: RootState) => state.start.phoneNumber;
 
 export default startSlice.reducer;

@@ -16,7 +16,8 @@ const TelNumber: FC<{ onClickRequestCall: () => void }> = ({ onClickRequestCall 
 
 	const telNumber = useAppSelector(selPhoneNummberForCall);
 
-	const [textNum, digNum] = getFormatedTelNumber(telNumber);
+
+	const [textNum, digNum] = getFormatedTelNumber(telNumber!);
 
 	return (
 		<Box justifyContent='flex-end' sx={[{ display: 'flex', },
