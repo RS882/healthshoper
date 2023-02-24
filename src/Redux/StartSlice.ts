@@ -11,14 +11,12 @@ export interface ICityLis {
 	cityList: CitysList;
 };
 
-export interface IErrorMsg {
-	errorMsg: string | null;
-};
 
-export type IStartData = IPhoneNumber & ICityLis & IErrorMsg;
+
+export type IStartData = IPhoneNumber & ICityLis;
 
 const initialState: IStartData = {
-	errorMsg: null,
+
 	cityList: ["Berlin",
 		"Hamburg",
 		"München",
@@ -104,7 +102,7 @@ const initialState: IStartData = {
 
 };
 
-const getTelNumber = createAction<IPhoneNumber | string>(getPhoneNumber.fulfilled.type);
+const getTelNumber = createAction<IPhoneNumber>(getPhoneNumber.fulfilled.type);
 
 export const startSlice = createSlice({
 	name: 'start',
@@ -114,14 +112,8 @@ export const startSlice = createSlice({
 	extraReducers: (builder) => {
 		builder
 			.addCase(getTelNumber, (state, action) => {
-				if (typeof action.payload === 'string') {
-					state.errorMsg = action.payload;
-
-				} else {
-					const payload = action.payload.phoneNumber!;
-					state.phoneNumber = payload && payload.match(/^\d{12}$/) ? payload : state.phoneNumber;
-				}
-
+				const payload = action.payload.phoneNumber!;
+				state.phoneNumber = payload && payload.match(/^\d{12}$/) ? payload : state.phoneNumber;
 			})
 	}
 });

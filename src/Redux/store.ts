@@ -3,12 +3,14 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import itemsReducer from "./ItemsSlice";
 import startReducer from "./StartSlice";
 import actionReducer from "./ActionSlice";
+import errorReducer from "./ErrorSlice";
 
 const store = configureStore({
 	reducer: {
 		items: itemsReducer,
 		start: startReducer,
 		action: actionReducer,
+		error: errorReducer,
 	},
 
 });

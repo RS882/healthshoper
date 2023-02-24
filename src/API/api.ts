@@ -9,9 +9,4 @@ const instance = axios.create({
 
 export const startAPI = {
 	phoneNumber: () => instance.get(`phone_number`)
-		.then(res => res)
-		.catch(rej => {
-
-			return new Error(rej.code)
-		}),
 };

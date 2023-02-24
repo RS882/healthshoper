@@ -31,5 +31,10 @@ export const delElemFromArray = <T = string>(arr: T[], elem: T): T[] => {
 	return [...newState];
 };
 
+//-----------------------------------------
+// Adding an element to an array without duplicates
+export const addItemToArrayOneDublicat = <T>(array: T[], item: T) =>
+	item && array.includes(item) ? array : [...array, item];
+
 
 

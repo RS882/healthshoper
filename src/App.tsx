@@ -12,6 +12,7 @@ import store, { useAppDispatch } from './Redux/store';
 import { Provider } from 'react-redux';
 import Page404 from './commponent/Page404/Page404';
 import { getPhoneNumber } from './Redux/Thunk/thunkStart';
+import { setErrorMessage } from './Redux/ErrorSlice';
 
 
 
@@ -22,10 +23,25 @@ const App = () => {
 
   const dispatch = useAppDispatch();
 
+
+  const catchAllError = (error: PromiseRejectionEvent) => {
+    // We transmit error messages to stat
+    dispatch(setErrorMessage(error.reason.message))
+
+  };
   useEffect(() => {
     dispatch(getPhoneNumber());
 
-  }, [])
+  }, []);
+
+  useEffect(() => {
+    // Catch the rampant load errors
+    window.addEventListener('unhandledrejection', catchAllError);
+    return () => {
+      window.removeEventListener('unhandledrejection', catchAllError);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps 
+  }, []);
 
   return (
     <Box sx={[{

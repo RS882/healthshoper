@@ -7,9 +7,8 @@ export const getPhoneNumber = createAsyncThunk(
 	`start/getPhoneNumber`,
 	async (anyData, thunkAPI) => {
 		const res = await startAPI.phoneNumber()
-			.then(respons => (respons instanceof Error) ? respons.message : respons.data)
+			.then(respons => respons.data)
 			.catch(reject => thunkAPI.rejectWithValue(reject.message));//выводим ошибку
-
 		return res;
 	}
 )
