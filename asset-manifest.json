@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.js": "/healthshoper/static/js/main.9ed44727.js",
+    "static/js/787.062c18ee.chunk.js": "/healthshoper/static/js/787.062c18ee.chunk.js",
+    "static/media/logo.svg": "/healthshoper/static/media/logo.83f9906c21b1759acb3e26a1b9a494d2.svg",
+    "index.html": "/healthshoper/index.html",
+    "main.9ed44727.js.map": "/healthshoper/static/js/main.9ed44727.js.map",
+    "787.062c18ee.chunk.js.map": "/healthshoper/static/js/787.062c18ee.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.9ed44727.js"
+  ]
+}
