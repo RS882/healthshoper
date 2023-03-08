@@ -93,7 +93,7 @@ const AppContainer = () => {
       `;
   return (
     <React.StrictMode >
-      <BrowserRouter >
+      <BrowserRouter basename='/healthshoper'>
         <Provider store={store}>
           <ThemeProvider theme={themeDate}>
             <CssBaseline />
