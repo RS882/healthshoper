@@ -2,18 +2,21 @@ import CssBaseline from '@mui/material/CssBaseline';
 import React, { useEffect } from 'react';
 import { Box, css, ThemeProvider } from '@mui/material';
 import GlobalStyles from '@mui/material/GlobalStyles';
-import Container from '@mui/material/Container';
+
 import { themeDate } from './Theme/theme';
 import { BrowserRouter, Route, Routes, } from 'react-router-dom';
-import Main, { styleMain } from './commponent/MainPage/Main';
+import Main from './commponent/MainPage/Main';
 import Header from './commponent/Header/Header';
 import Footer from './commponent/Footer/Footer';
 import store, { useAppDispatch, useAppSelector } from './Redux/store';
 import { Provider } from 'react-redux';
 import Page404 from './commponent/Page404/Page404';
 import { getCitysList, getPhoneNumber } from './Redux/Thunk/thunkStart';
-import { setErrorMessage } from './Redux/ErrorSlice';
+import { selIsError, setErrorMessage } from './Redux/ErrorSlice';
 import { selInitializationSuccess, сhangeAppInitialized } from './Redux/StartSlice';
+
+import ModalContainer from './commponent/Modal/ModalContainer';
+import { setModalOpen } from './Redux/ModalSlice';
 
 
 
@@ -25,6 +28,7 @@ const App = () => {
   const dispatch = useAppDispatch();
 
   const isAppStart = useAppSelector(selInitializationSuccess);
+  const isError = useAppSelector(selIsError);
 
 
   const catchAllError = (error: PromiseRejectionEvent) => {
@@ -49,8 +53,13 @@ const App = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps 
   }, []);
 
+  useEffect(() => {
+    isError && dispatch(setModalOpen())
+  }, [isError])
+
   return (<>
-    {isAppStart ?
+    {isAppStart ? <>
+      <ModalContainer />
       <Box sx={[{
         position: 'relative',
         minHeight: 1,
@@ -78,8 +87,9 @@ const App = () => {
           < Route path='*' element={<Page404 />} />
         </Routes>
         <Footer />
-      </Box > :
-      null
+      </Box >
+    </> :
+      <ModalContainer />
     }
   </>);
 }

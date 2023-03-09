@@ -4,6 +4,7 @@ import itemsReducer from "./ItemsSlice";
 import startReducer from "./StartSlice";
 import actionReducer from "./ActionSlice";
 import errorReducer from "./ErrorSlice";
+import modalReducer from "./ModalSlice";
 
 const store = configureStore({
 	reducer: {
@@ -11,6 +12,7 @@ const store = configureStore({
 		start: startReducer,
 		action: actionReducer,
 		error: errorReducer,
+		modal: modalReducer,
 	},
 
 });
