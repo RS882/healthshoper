@@ -8,5 +8,6 @@ const instance = axios.create({
 });
 
 export const startAPI = {
-	phoneNumber: () => instance.get(`phone_number`)
+	phoneNumber: () => instance.get(`phone_number`),
+	cityList: () => instance.get(`citys_list`),
 };

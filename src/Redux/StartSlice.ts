@@ -1,23 +1,27 @@
 import { createAction, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { CitysList } from '../Types/cityList';
 import { RootState } from './store';
-import { getPhoneNumber } from './Thunk/thunkStart';
+import { getCitysList, getPhoneNumber } from './Thunk/thunkStart';
 
 
 export interface IPhoneNumber {
 	phoneNumber: string;
 };
-export interface ICityLis {
-	cityList: CitysList;
+export interface ICityList {
+	citysList: CitysList;
 };
+export interface IStartData extends IPhoneNumber, ICityList {
+	isInitializationSuccess: boolean;
+
+
+}
 
 
 
-export type IStartData = IPhoneNumber & ICityLis;
 
 const initialState: IStartData = {
 
-	cityList: ["Berlin",
+	citysList: ["Berlin",
 		"Hamburg",
 		"München",
 		"Köln",
@@ -99,15 +103,22 @@ const initialState: IStartData = {
 		"Salzgitter",
 		"Kaiserslautern",],
 	phoneNumber: '012345646901',
-
+	isInitializationSuccess: false,
 };
 
 const getTelNumber = createAction<IPhoneNumber>(getPhoneNumber.fulfilled.type);
 
+const getListOfCity = createAction<ICityList>(getCitysList.fulfilled.type);
+
 export const startSlice = createSlice({
 	name: 'start',
 	initialState,
-	reducers: {},
+	reducers: {
+		сhangeAppInitialized: (state) => {
+			state.isInitializationSuccess = true;
+		}
+
+	},
 
 	extraReducers: (builder) => {
 		builder
@@ -115,13 +126,20 @@ export const startSlice = createSlice({
 				const payload = action.payload.phoneNumber!;
 				state.phoneNumber = payload && payload.match(/^\d{12}$/) ? payload : state.phoneNumber;
 			})
+			.addCase(getListOfCity, (state, action) => {
+
+
+				state.citysList = action.payload.citysList ? action.payload.citysList : state.citysList;
+
+			})
 	}
 });
 
 
-export const { } = startSlice.actions;
+export const { сhangeAppInitialized } = startSlice.actions;
 
-export const selCityList = (state: RootState) => state.start.cityList;
+export const selCityList = (state: RootState) => state.start.citysList;
 export const selPhoneNummberForCall = (state: RootState) => state.start.phoneNumber;
+export const selInitializationSuccess = (state: RootState) => state.start.isInitializationSuccess;
 
 export default startSlice.reducer;

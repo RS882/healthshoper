@@ -1,5 +1,4 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { AxiosResponse } from "axios";
 
 import { startAPI } from './../../API/api';
 
@@ -11,4 +10,14 @@ export const getPhoneNumber = createAsyncThunk(
 			.catch(reject => thunkAPI.rejectWithValue(reject.message));//выводим ошибку
 		return res;
 	}
-)
+);
+
+export const getCitysList = createAsyncThunk(
+	`start/getCitysList`,
+	async (anyData, thunkAPI) => {
+		const res = await startAPI.cityList()
+			.then(respons => respons.data)
+			.catch(reject => thunkAPI.rejectWithValue(reject.message));//выводим ошибку
+		return res;
+	}
+);

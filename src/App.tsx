@@ -8,11 +8,12 @@ import { BrowserRouter, Route, Routes, } from 'react-router-dom';
 import Main, { styleMain } from './commponent/MainPage/Main';
 import Header from './commponent/Header/Header';
 import Footer from './commponent/Footer/Footer';
-import store, { useAppDispatch } from './Redux/store';
+import store, { useAppDispatch, useAppSelector } from './Redux/store';
 import { Provider } from 'react-redux';
 import Page404 from './commponent/Page404/Page404';
-import { getPhoneNumber } from './Redux/Thunk/thunkStart';
+import { getCitysList, getPhoneNumber } from './Redux/Thunk/thunkStart';
 import { setErrorMessage } from './Redux/ErrorSlice';
+import { selInitializationSuccess, сhangeAppInitialized } from './Redux/StartSlice';
 
 
 
@@ -23,6 +24,8 @@ const App = () => {
 
   const dispatch = useAppDispatch();
 
+  const isAppStart = useAppSelector(selInitializationSuccess);
+
 
   const catchAllError = (error: PromiseRejectionEvent) => {
     // We transmit error messages to stat
@@ -30,8 +33,11 @@ const App = () => {
 
   };
   useEffect(() => {
-    dispatch(getPhoneNumber());
-
+    Promise.allSettled([
+      dispatch(getPhoneNumber()),
+      dispatch(getCitysList()),
+    ])
+      .then(() => dispatch(сhangeAppInitialized()))
   }, []);
 
   useEffect(() => {
@@ -43,39 +49,39 @@ const App = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps 
   }, []);
 
-  return (
-    <Box sx={[{
-      position: 'relative',
-      minHeight: 1,
-      display: 'flex',
-      flexDirection: 'column',
-      '&  > main': {
-        flex: '1 1 auto',
-      }
-
-    }, (theme) => ({ backgroundColor: theme.bgColors.lichtBlue, })]
-    } >
+  return (<>
+    {isAppStart ?
       <Box sx={[{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        width: 1,
-      }, (theme) => ({
-        backgroundColor: theme.bgColors.darkBlue,
-        [theme.breakpoints.up('mobile')]: { height: 170, },
-        [theme.breakpoints.up('tablet')]: { height: 370, },
-      })]
-      } />
-      <Header />
-      <Routes>
-        <Route index element={<Main />} />
-        < Route path='*' element={<Page404 />} />
-      </Routes>
-      <Footer />
-
-    </Box >
-
-  );
+        position: 'relative',
+        minHeight: 1,
+        display: 'flex',
+        flexDirection: 'column',
+        '&  > main': {
+          flex: '1 1 auto',
+        }
+      }, (theme) => ({ backgroundColor: theme.bgColors.lichtBlue, })]
+      } >
+        <Box sx={[{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: 1,
+        }, (theme) => ({
+          backgroundColor: theme.bgColors.darkBlue,
+          [theme.breakpoints.up('mobile')]: { height: 170, },
+          [theme.breakpoints.up('tablet')]: { height: 370, },
+        })]
+        } />
+        <Header />
+        <Routes>
+          <Route index element={<Main />} />
+          < Route path='*' element={<Page404 />} />
+        </Routes>
+        <Footer />
+      </Box > :
+      null
+    }
+  </>);
 }
 
 
