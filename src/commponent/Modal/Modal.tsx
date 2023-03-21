@@ -1,21 +1,14 @@
 
 import React, { FC } from 'react';
 import Box from '@mui/material/Box';
-
-import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 
-import { setModalClose } from './../../Redux/ModalSlice';
-import { useAppDispatch } from './../../Redux/store';
-import { delErrorMessage } from './../../Redux/ErrorSlice';
-
-import LinearProgress from '@mui/material/LinearProgress';
 
 export interface IModal {
 	isOpen: boolean;
-	title: string;
-	modalMessages: string[];
 	isPreloader: boolean;
+	onClose: (is?: boolean) => void;
+	children: React.ReactNode;
 }
 
 const style = {
@@ -31,42 +24,18 @@ const style = {
 };
 
 
+const ModalWindow: FC<IModal> = ({ children, isOpen, isPreloader, onClose }) => {
 
-const ModalWindow: FC<IModal> = ({ title, modalMessages, isOpen, isPreloader }) => {
-
-	const dispatch = useAppDispatch();
-
-	const handleClose = () => {
-		if (!isPreloader) {
-
-			dispatch(delErrorMessage());
-			dispatch(setModalClose());
-
-		}
-	};
-	const textElem = modalMessages.map((e, i) => <div key={e + 1}>{e}</div>)
 
 	return (
 
 		<Modal
 			open={isOpen}
-			onClose={handleClose}
+			onClose={() => onClose(isPreloader)}
 			aria-labelledby="modal-modal-title"
 			aria-describedby="modal-modal-description"
 		>
-			{<Box sx={style}>
-				{isPreloader ? <LinearProgress /> : <>
-					<Typography id="modal-modal-title" variant="h6" component="h2">
-						{title}
-					</Typography>
-					<Typography id="modal-modal-description" sx={{ mt: 2 }}>
-						{textElem}
-					</Typography>
-				</>
-				}
-			</Box>
-			}
-
+			<Box sx={style}>	{children}</Box>
 		</Modal>
 
 	);

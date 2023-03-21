@@ -1,34 +1,49 @@
 import React, { FC } from 'react';
-import { selIsModal } from '../../Redux/ModalSlice';
-import { useAppSelector } from './../../Redux/store';
-import Modal, { IModal } from './Modal';
-import { selErrorMessage } from './../../Redux/ErrorSlice';
+import { selIsModal, setModalClose } from '../../Redux/ModalSlice';
+import { useAppDispatch, useAppSelector } from './../../Redux/store';
+import Modal from './Modal';
+import { delErrorMessage } from './../../Redux/ErrorSlice';
 import { selInitializationSuccess } from '../../Redux/StartSlice';
+import LinearProgress from '@mui/material/LinearProgress';
+import RequestCallForm from './../RequestCall/RequestCall';
 
-interface IModalContainer {
+import ModalMessage from './ModalMessage';
+import { selIsRequsetCallForm, setRequsetCallFormClose } from './../../Redux/RequesrCallSlice';
+
+export interface IModalContainer {
 	title?: string;
 	messages?: string[];
 
 }
 
-const ModalContainer: FC<IModalContainer> = ({ title, messages }) => {
+const ModalContainer: FC<IModalContainer> = (props) => {
+	const dispatch = useAppDispatch();
+
+	const handleClose = (is?: boolean) => {
+		if (!is) {
+			dispatch(delErrorMessage());
+			dispatch(setRequsetCallFormClose());
+			dispatch(setModalClose());
+		}
+	};
 
 	const isPreloader = !useAppSelector(selInitializationSuccess);
-
 	const isOpen = useAppSelector(selIsModal);
-	const errorMessage = useAppSelector(selErrorMessage);
-	const errorsTitel = errorMessage.length > 0 ? 'Error' : '';
-	const errorMessages = errorMessage.length > 0 ? errorMessage : ['To close the window, click somewhere'];
+	const isRequestCallFormOpen = useAppSelector(selIsRequsetCallForm);
 
-	const modalProps: IModal = {
+	let contentsOfModalWindow: React.ReactNode = <ModalMessage {...props} />;
+	if (isPreloader) contentsOfModalWindow = <LinearProgress />;
+	if (isRequestCallFormOpen) contentsOfModalWindow = <RequestCallForm />
+
+
+	const modalProps = {
 		isPreloader: isPreloader,
-		isOpen: isPreloader ? isPreloader : isOpen,
-		title: title ? title : errorsTitel,
-		modalMessages: messages && messages.length > 0 ? messages : errorMessages,
+		isOpen: isPreloader || isRequestCallFormOpen || isOpen,
+		onClose: handleClose,
 	};
 
 	return (
-		<Modal {...modalProps} />
+		<Modal {...modalProps} >{contentsOfModalWindow}</Modal>
 	);
 };
 

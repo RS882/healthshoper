@@ -12,12 +12,7 @@ export interface ICityList {
 };
 export interface IStartData extends IPhoneNumber, ICityList {
 	isInitializationSuccess: boolean;
-
-
-}
-
-
-
+};
 
 const initialState: IStartData = {
 

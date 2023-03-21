@@ -16,6 +16,8 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 
 import ListItemText from '@mui/material/ListItemText';
+import { useAppDispatch } from './../../../Redux/store';
+import { setRequsetCallFormOpen } from '../../../Redux/RequesrCallSlice';
 
 
 const StyledBox = styled(Box)((props) => ({
@@ -31,11 +33,12 @@ const StyledBoxChoose = styled(Box)((props) => ({
 
 const TopBar = () => {
 	const navigate = useNavigate();
+	const dispatch = useAppDispatch();
 	const [openBurger, setOpenBurger] = useState(false);
 
 
 	const onClockRequestCall = () => {
-		console.log('request');
+		dispatch(setRequsetCallFormOpen())
 
 	};
 
