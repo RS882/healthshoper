@@ -17,6 +17,7 @@ import { selInitializationSuccess, сhangeAppInitialized } from './Redux/StartSl
 
 import ModalContainer from './commponent/Modal/ModalContainer';
 import { setModalOpen } from './Redux/ModalSlice';
+import { selInfoMessage } from './Redux/RequesrCallSlice';
 
 
 
@@ -29,6 +30,7 @@ const App = () => {
 
   const isAppStart = useAppSelector(selInitializationSuccess);
   const isError = useAppSelector(selIsError);
+  const isInfoMessage = useAppSelector(selInfoMessage);
 
 
   const catchAllError = (error: PromiseRejectionEvent) => {
@@ -54,8 +56,10 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    isError && dispatch(setModalOpen())
-  }, [isError])
+    console.log(isInfoMessage);
+
+    isError || isInfoMessage && dispatch(setModalOpen())
+  }, [isError, isInfoMessage])
 
   return (<>
     {isAppStart ? <>

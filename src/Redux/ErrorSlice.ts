@@ -2,6 +2,7 @@ import { createAction, createSlice } from '@reduxjs/toolkit';
 import { PayloadAction } from '@reduxjs/toolkit';
 import { addItemToArrayOneDublicat } from '../Utilits/functions';
 import { RootState } from './store';
+import { setRequestCall } from './Thunk/thunkRequestCall';
 import { getCitysList, getPhoneNumber } from './Thunk/thunkStart';
 
 
@@ -17,6 +18,7 @@ const initialState: IErrorSlice = {
 
 const addErrorGetTelNumber = createAction<string>(getPhoneNumber.rejected.type);
 const addErrorCitysList = createAction<string>(getCitysList.rejected.type);
+const addErrorRCall = createAction<string>(setRequestCall.rejected.type);
 
 // Reducer of error processing
 const ErrorSlice = createSlice({
@@ -40,6 +42,10 @@ const ErrorSlice = createSlice({
 				state.isError = true;
 			})
 			.addCase(addErrorCitysList, (state, action) => {
+				state.errorMessage = addItemToArrayOneDublicat(state.errorMessage, action.payload);
+				state.isError = true;
+			})
+			.addCase(addErrorRCall, (state, action) => {
 				state.errorMessage = addItemToArrayOneDublicat(state.errorMessage, action.payload);
 				state.isError = true;
 			})

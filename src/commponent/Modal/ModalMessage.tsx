@@ -3,14 +3,18 @@ import { selErrorMessage } from '../../Redux/ErrorSlice';
 import { useAppSelector } from '../../Redux/store';
 import { IModalContainer } from './ModalContainer';
 import Typography from '@mui/material/Typography';
+import { selInfoMessage } from '../../Redux/RequesrCallSlice';
+
 
 const ModalMessage: FC<IModalContainer> = ({ title, messages }) => {
 
 	const errorMessage = useAppSelector(selErrorMessage);
+	const infoMessage = useAppSelector(selInfoMessage);
+	const otherMessage = infoMessage ? [infoMessage] : messages;
 	const errorsTitel = errorMessage.length > 0 ? 'Error' : '';
 	const errorMessages = errorMessage.length > 0 ? errorMessage : ['To close the window, click somewhere'];
 	const elemTitle = title || errorsTitel;
-	const modalMessages = messages && messages.length > 0 ? messages : errorMessages;
+	const modalMessages = otherMessage && otherMessage.length > 0 ? otherMessage : errorMessages;
 	const textElem = modalMessages.map((e, i) => <div key={e + i}>{e}</div>)
 
 	return (

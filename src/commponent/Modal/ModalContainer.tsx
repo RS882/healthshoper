@@ -8,7 +8,7 @@ import LinearProgress from '@mui/material/LinearProgress';
 import RequestCallForm from './../RequestCall/RequestCall';
 
 import ModalMessage from './ModalMessage';
-import { selIsRequsetCallForm, setRequsetCallFormClose } from './../../Redux/RequesrCallSlice';
+import { clearRCallMessage, selIsRequsetCallForm, setRequsetCallFormClose } from './../../Redux/RequesrCallSlice';
 
 export interface IModalContainer {
 	title?: string;
@@ -22,6 +22,7 @@ const ModalContainer: FC<IModalContainer> = (props) => {
 	const handleClose = (is?: boolean) => {
 		if (!is) {
 			dispatch(delErrorMessage());
+			dispatch(clearRCallMessage());
 			dispatch(setRequsetCallFormClose());
 			dispatch(setModalClose());
 		}
