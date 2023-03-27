@@ -10,6 +10,16 @@ const InputTextField = ({ ...props }: TextFieldProps & InputAttrProps) => {
 	const isError: boolean = meta.touched && !!meta.error;
 	const inputFielsRef = useRef<HTMLDivElement>(null);
 
+	const TEL_TEMPLATE = '+__ ___ ___-__-__';
+	const isPhoneNumer = field.name === 'phoneNumber';
+	const positionNumberIsNotForFilling = (telTemplate = '+__ ___ ___-__-__'): number[] => {
+		let position: number[] = [];
+		telTemplate.split('').map((e, i) => {
+			if (e !== '_') position.push(i);
+		})
+		return position;
+	};
+
 	const transformPhoneNumber = (value: string, template = '+__ ___ ___-__-__'): [string, number | undefined] => {
 		const numberInValue = value.match(/\d/g);
 
@@ -24,13 +34,53 @@ const InputTextField = ({ ...props }: TextFieldProps & InputAttrProps) => {
 		return [res, indexCursor];
 	};
 
+	const inputElem = inputFielsRef.current !== null ? inputFielsRef.current.querySelector('input') : null;
+
+	// console.log(positionNumberIsNotForFilling());
+	// console.log(сurrentCursorPosition);
+
+	const onKeyEvent = (event: React.KeyboardEvent<HTMLDivElement>) => {
+		const сurrentCursorPosition = inputElem !== null ? inputElem.selectionStart! : 0;
+		const isPositionNoConsistent = (position: number) => positionNumberIsNotForFilling().includes(position);
+
+		const displacementCursor = (displacement: number, displacementForCheck = displacement) => {
+			isPositionNoConsistent(сurrentCursorPosition + displacementForCheck) &&
+				inputElem?.setSelectionRange(сurrentCursorPosition + displacement, сurrentCursorPosition + displacement)
+		};
+
+
+		// positionNumberIsNotForFilling().includes(сurrentCursorPosition) &&
+		// 	inputElem?.setSelectionRange(сurrentCursorPosition + 1, сurrentCursorPosition + 1)
+
+		if (event.key === 'Delete') {
+			event.preventDefault();
+
+			if (!isPositionNoConsistent(сurrentCursorPosition)) {
+				const res = field.value.split('');
+				res.splice(сurrentCursorPosition - 1, 1, '_');
+				helpers.setValue(res.join(''));
+
+			}
+		};
+		if (event.key === 'Backspace') {
+			event.preventDefault();
+			console.log(event.key)
+		};
+		if (event.key === 'ArrowLeft')
+			сurrentCursorPosition <= 1 ? displacementCursor(1, -1) : displacementCursor(-1);
+
+		if (event.key === 'ArrowRight') displacementCursor(1);
+
+
+
+	}
+
+
 	useEffect(() => {
 
-		if (field.name === 'phoneNumber' && field.value) {
-
-
+		if (isPhoneNumer && field.value) {
 			const [inputText, cursorPosition] = transformPhoneNumber(field.value);
-			cursorPosition && inputFielsRef.current!.querySelector('input')?.setSelectionRange(cursorPosition, cursorPosition);
+			cursorPosition && inputElem?.setSelectionRange(cursorPosition, cursorPosition);
 			helpers.setValue(inputText);
 		};
 
@@ -39,6 +89,7 @@ const InputTextField = ({ ...props }: TextFieldProps & InputAttrProps) => {
 	return (
 		<>
 			<TextField ref={inputFielsRef} variant="outlined" {...field} {...props}
+				onKeyDown={isPhoneNumer ? e => onKeyEvent(e) : undefined}
 				error={isError}
 				helperText={isError ? meta.error : ' '} />
 		</>

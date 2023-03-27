@@ -38,9 +38,7 @@ export const requesrCallSlice = createSlice({
 			.addCase(setRCall, (state, action) => {
 				if (('' + action.payload).startsWith('2')) state.responseMessege = 'Thanks for the appeal! We will contact you shortly';
 				else state.responseMessege = 'Your application is not accepted. Something went wrong...'
-
 			})
-
 	}
 });
 

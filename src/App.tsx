@@ -56,7 +56,6 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    console.log(isInfoMessage);
 
     isError || isInfoMessage && dispatch(setModalOpen())
   }, [isError, isInfoMessage])

@@ -4,6 +4,7 @@ import { useAppSelector } from '../../Redux/store';
 import { IModalContainer } from './ModalContainer';
 import Typography from '@mui/material/Typography';
 import { selInfoMessage } from '../../Redux/RequesrCallSlice';
+import { Box } from '@mui/material';
 
 
 const ModalMessage: FC<IModalContainer> = ({ title, messages }) => {
@@ -15,16 +16,16 @@ const ModalMessage: FC<IModalContainer> = ({ title, messages }) => {
 	const errorMessages = errorMessage.length > 0 ? errorMessage : ['To close the window, click somewhere'];
 	const elemTitle = title || errorsTitel;
 	const modalMessages = otherMessage && otherMessage.length > 0 ? otherMessage : errorMessages;
-	const textElem = modalMessages.map((e, i) => <div key={e + i}>{e}</div>)
+	const textElem = modalMessages.map((e, i) => <Typography key={e + i}>{e}</Typography>)
 
 	return (
 		<>
 			<Typography id="modal-modal-title" variant="h6" component="h2">
 				{elemTitle}
 			</Typography>
-			<Typography id="modal-modal-description" sx={{ mt: 2 }}>
+			<Box id="modal-modal-description" sx={{ mt: 2 }}>
 				{textElem}
-			</Typography>
+			</Box>
 		</>
 	);
 };
