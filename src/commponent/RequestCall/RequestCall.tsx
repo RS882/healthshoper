@@ -32,7 +32,7 @@ const RequestCallForm = () => {
 					.required('Required'),
 				phoneNumber: Yup.string()
 					.required('Required')
-					.max(17, 'Must be 20 characters or less')
+					.max(17, 'Must be 12 characters or less')
 				//.test('telNumber', 'Unacceptable symbol ', (values) => values === '111'),
 			})}
 			onSubmit={values => {

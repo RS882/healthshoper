@@ -57,19 +57,16 @@ const InputTextField = ({ ...props }: TextFieldProps & InputAttrProps) => {
 
 		if (event.key.match(/\d/)) {
 			event.preventDefault();
-			if (!field.value) {
+			if (field.value === TEL_TEMPLATE) {
 				const res = field.value.split('');
-				res.splice(2, 1, event.key);
+				res.splice(1, 1, event.key);
 				helpers.setValue(res.join(''));
-			};
-			if (!isPositionNoConsistent(сurrentCursorPosition)) {
+			} else if (!isPositionNoConsistent(сurrentCursorPosition)) {
 				const res = field.value.split('');
-				if (res[сurrentCursorPosition] === '_') {
-					res.splice(сurrentCursorPosition, 1, event.key);
-				};
+				res[сurrentCursorPosition] === '_' && res.splice(сurrentCursorPosition, 1, event.key)
 				helpers.setValue(res.join(''));
 			}
-
+			return;
 		};
 		if (event.key === 'Delete') {
 			event.preventDefault();
@@ -78,6 +75,7 @@ const InputTextField = ({ ...props }: TextFieldProps & InputAttrProps) => {
 				res[сurrentCursorPosition] !== '_' && res.splice(сurrentCursorPosition, 1, '_');
 				helpers.setValue(res.join(''));
 			};
+			return;
 		};
 		if (event.key === 'Backspace') {
 			event.preventDefault();
@@ -88,11 +86,20 @@ const InputTextField = ({ ...props }: TextFieldProps & InputAttrProps) => {
 			} else {
 				сurrentCursorPosition <= 1 ? displacementCursor(1, -1) : displacementCursor(-1);
 			};
+			return;
 		};
 
-		if (event.key === 'ArrowLeft') сurrentCursorPosition <= 1 ? displacementCursor(1, -1) : displacementCursor(-1);
+		if (event.key === 'ArrowLeft') {
+			сurrentCursorPosition <= 1 ? displacementCursor(1, -1) : displacementCursor(-1);
+			return;
+		}
 
-		if (event.key === 'ArrowRight') displacementCursor(1);
+		if (event.key === 'ArrowRight') {
+			displacementCursor(1);
+			return;
+		}
+
+
 	};
 
 	const onFocusEvent = () => {
