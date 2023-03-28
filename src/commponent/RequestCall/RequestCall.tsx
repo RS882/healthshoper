@@ -7,6 +7,7 @@ import InputTextField from './InputTextField';
 import Typography from '@mui/material/Typography';
 import * as Yup from 'yup';
 import { setRequestCall } from '../../Redux/Thunk/thunkRequestCall';
+import { positionNumberIsNotForFilling } from '../../Utilits/functions';
 
 export interface IRequestCall {
 	userName: string;
@@ -25,6 +26,7 @@ const RequestCallForm = () => {
 		dispatch(setRequsetCallFormClose());
 	};
 
+
 	return (
 		<Box component={Formik} initialValues={iniValues}
 			validationSchema={Yup.object({
@@ -33,7 +35,13 @@ const RequestCallForm = () => {
 				phoneNumber: Yup.string()
 					.required('Required')
 					.max(17, 'Must be 12 characters or less')
-				//.test('telNumber', 'Unacceptable symbol ', (values) => values === '111'),
+					.test('telNumberRequired', 'Required ', (values) => values.match(/\d/g)?.length === 12)
+					.test('telNumber', 'Unacceptable symbol ', (values) => {
+						const arr = values.split('')
+							.filter((e, i) => !positionNumberIsNotForFilling().includes(i) && e !== '_')
+							.join('');
+						return (/^\d+$/).test(arr)
+					}),
 			})}
 			onSubmit={values => {
 				const val: IRequestCall = { userName: values.userName, phoneNumber: values.phoneNumber.match(/\d/g).join('') };

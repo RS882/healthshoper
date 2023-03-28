@@ -36,5 +36,34 @@ export const delElemFromArray = <T = string>(arr: T[], elem: T): T[] => {
 export const addItemToArrayOneDublicat = <T>(array: T[], item: T) =>
 	item && array.includes(item) ? array : [...array, item];
 
+//----------------------------------------------------
+// converts a phone number according to the template
+// Returns the array - telephone number and position of the cursor
+export const transformPhoneNumber = (value: string, template = '+__ ___ ___-__-__'): [string, number | undefined] => {
+	const valueRes = value.length > template.length ?
+		value.slice(0, template.length) : value;
+	const numberInValue = valueRes.match(/\d|_/g);
 
+	if (!numberInValue || !valueRes.match(/\d/g)) return [template, 1];
 
+	const res: [string, number] = numberInValue.reduce((res, e, i) => {
+		const [startRes, startIndex] = res;
+		const indexInTemplate: number = startRes.indexOf('_', startIndex + 1);
+		const arrRes = startRes.split('');
+		arrRes.splice(indexInTemplate, 1, e);
+		return [arrRes.join(''), indexInTemplate];
+	}, [template, 0]);
+	const resString = res[0];
+	const indexCursor: number | undefined = resString.indexOf('_') > 0 ? resString.indexOf('_') : undefined;
+	return [resString, indexCursor];
+};
+//-----------------------------------
+//Returning an array of income in the template that cannot be filled out
+export const positionNumberIsNotForFilling = (telTemplate = '+__ ___ ___-__-__'): number[] => {
+	let position: number[] = [];
+	telTemplate.split('').map((e, i) => {
+		e !== '_' && position.push(i);
+	})
+	return position;
+};
+//---------------------------------------

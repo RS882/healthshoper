@@ -3,7 +3,8 @@ import { useField } from 'formik';
 import React, { useRef } from 'react';
 import { InputAttrProps } from './../../Types/formikTypes';
 import { useEffect } from 'react';
-//"Incorrect entry."
+import { positionNumberIsNotForFilling, transformPhoneNumber } from '../../Utilits/functions';
+
 
 const InputTextField = ({ ...props }: TextFieldProps & InputAttrProps) => {
 	const [field, meta, helpers] = useField(props);
@@ -13,32 +14,9 @@ const InputTextField = ({ ...props }: TextFieldProps & InputAttrProps) => {
 	const TEL_TEMPLATE = '+__ ___ ___-__-__';
 	const isPhoneNumer = field.name === 'phoneNumber';
 
-	const positionNumberIsNotForFilling = (telTemplate = '+__ ___ ___-__-__'): number[] => {
-		let position: number[] = [];
-		telTemplate.split('').map((e, i) => {
-			if (e !== '_') position.push(i);
-		})
-		return position;
-	};
 
-	const transformPhoneNumber = (value: string, template = '+__ ___ ___-__-__'): [string, number | undefined] => {
-		const valueRes = value.length > template.length ?
-			value.slice(0, template.length) : value;
-		const numberInValue = valueRes.match(/\d|_/g);
 
-		if (!numberInValue || !valueRes.match(/\d/g)) return [template, 1];
 
-		const res: [string, number] = numberInValue.reduce((res, e, i) => {
-			const [startRes, startIndex] = res;
-			const indexInTemplate: number = startRes.indexOf('_', startIndex + 1);
-			const arrRes = startRes.split('');
-			arrRes.splice(indexInTemplate, 1, e);
-			return [arrRes.join(''), indexInTemplate];
-		}, [template, 0]);
-		const resString = res[0];
-		const indexCursor: number | undefined = resString.indexOf('_') > 0 ? resString.indexOf('_') : undefined;
-		return [resString, indexCursor];
-	};
 
 	const inputElem = inputFielsRef.current !== null ? inputFielsRef.current.querySelector('input') : null;
 
@@ -49,11 +27,12 @@ const InputTextField = ({ ...props }: TextFieldProps & InputAttrProps) => {
 		!field.value && helpers.setValue(TEL_TEMPLATE);
 		const сurrentCursorPosition = inputElem !== null ? inputElem.selectionStart! : 0;
 		const isPositionNoConsistent = (position: number) => positionNumberIsNotForFilling().includes(position);
-
 		const displacementCursor = (displacement: number, displacementForCheck = displacement) => {
 			isPositionNoConsistent(сurrentCursorPosition + displacementForCheck) &&
 				inputElem?.setSelectionRange(сurrentCursorPosition + displacement, сurrentCursorPosition + displacement)
 		};
+
+
 
 		if (event.key.match(/\d/)) {
 			event.preventDefault();
@@ -63,18 +42,16 @@ const InputTextField = ({ ...props }: TextFieldProps & InputAttrProps) => {
 				helpers.setValue(res.join(''));
 			} else if (!isPositionNoConsistent(сurrentCursorPosition)) {
 				const res = field.value.split('');
-				res[сurrentCursorPosition] === '_' && res.splice(сurrentCursorPosition, 1, event.key)
+				res[сurrentCursorPosition] === '_' && res.splice(сurrentCursorPosition, 1, event.key);
 				helpers.setValue(res.join(''));
 			}
 			return;
 		};
-		if (event.key === 'Delete') {
+		if (event.key === 'Delete' && !isPositionNoConsistent(сurrentCursorPosition)) {
 			event.preventDefault();
-			if (!isPositionNoConsistent(сurrentCursorPosition)) {
-				const res = field.value.split('');
-				res[сurrentCursorPosition] !== '_' && res.splice(сurrentCursorPosition, 1, '_');
-				helpers.setValue(res.join(''));
-			};
+			const res = field.value.split('');
+			res[сurrentCursorPosition] !== '_' && res.splice(сurrentCursorPosition, 1, '_');
+			helpers.setValue(res.join(''));
 			return;
 		};
 		if (event.key === 'Backspace') {
@@ -98,15 +75,10 @@ const InputTextField = ({ ...props }: TextFieldProps & InputAttrProps) => {
 			displacementCursor(1);
 			return;
 		}
-
-
 	};
 
 	const onFocusEvent = () => {
-
-		if (!field.value) {
-			helpers.setValue(TEL_TEMPLATE);
-		}
+		!field.value && helpers.setValue(TEL_TEMPLATE);
 	};
 
 
@@ -119,6 +91,7 @@ const InputTextField = ({ ...props }: TextFieldProps & InputAttrProps) => {
 		};
 
 	}, [field.value]);
+
 
 	return (
 		<>
