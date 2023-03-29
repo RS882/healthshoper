@@ -8,17 +8,15 @@ import Typography from '@mui/material/Typography';
 import * as Yup from 'yup';
 import { setRequestCall } from '../../Redux/Thunk/thunkRequestCall';
 import { positionNumberIsNotForFilling } from '../../Utilits/functions';
+import { IRequestCall } from '../../Types/ARITypes';
 
-export interface IRequestCall {
-	userName: string;
-	phoneNumber: string;
-};
+
 
 
 const RequestCallForm = () => {
 
 	const dispatch = useAppDispatch();
-	const iniValues = {
+	const iniValues: IRequestCall = {
 		userName: '',
 		phoneNumber: '',
 	};

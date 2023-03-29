@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import { styled } from '@mui/material/styles';
 
-export interface IModal {
+interface IModal {
 	isOpen: boolean;
 	isPreloader: boolean;
 	onClose: (is?: boolean) => void;

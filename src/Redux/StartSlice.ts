@@ -1,15 +1,11 @@
-import { createAction, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { CitysList } from '../Types/cityList';
+import { createAction, createSlice, } from '@reduxjs/toolkit';
+import { ICityList, IPhoneNumber } from '../Types/ARITypes';
+
 import { RootState } from './store';
 import { getCitysList, getPhoneNumber } from './Thunk/thunkStart';
 
 
-export interface IPhoneNumber {
-	phoneNumber: string;
-};
-export interface ICityList {
-	citysList: CitysList;
-};
+
 export interface IStartData extends IPhoneNumber, ICityList {
 	isInitializationSuccess: boolean;
 };

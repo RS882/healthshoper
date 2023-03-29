@@ -1,23 +1,24 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-
 import { startAPI } from './../../API/api';
+import { createAppAsyncThunk } from "./ThunkFunction";
 
-export const getPhoneNumber = createAsyncThunk(
+
+
+
+export const getPhoneNumber = createAppAsyncThunk(
 	`start/getPhoneNumber`,
-	async (anyData, thunkAPI) => {
+	async (anyData, { rejectWithValue }) => {
 		const res = await startAPI.phoneNumber()
-			.then(respons => respons.data)
-			.catch(reject => thunkAPI.rejectWithValue(reject.message));//выводим ошибку
+			.catch(reject => rejectWithValue(reject.message));//выводим ошибку
 		return res;
 	}
 );
 
-export const getCitysList = createAsyncThunk(
+export const getCitysList = createAppAsyncThunk(
 	`start/getCitysList`,
-	async (anyData, thunkAPI) => {
+	async (anyData, { rejectWithValue }) => {
 		const res = await startAPI.cityList()
-			.then(respons => respons.data)
-			.catch(reject => thunkAPI.rejectWithValue(reject.message));//выводим ошибку
+			.catch(reject => rejectWithValue(reject.message));//выводим ошибку
 		return res;
 	}
 );

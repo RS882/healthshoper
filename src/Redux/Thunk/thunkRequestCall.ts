@@ -1,16 +1,16 @@
 
-import { createAsyncThunk } from '@reduxjs/toolkit';
 import { requestCallAPI } from '../../API/api';
-import { IRequestCall } from '../../commponent/RequestCall/RequestCall';
+import { IRequestCall } from '../../Types/ARITypes';
+import { createAppAsyncThunk } from './ThunkFunction';
 
 
 
-export const setRequestCall = createAsyncThunk(
+
+export const setRequestCall = createAppAsyncThunk(
 	'requestCall/setRequestCall',
-	async (data: IRequestCall, thunkAPI) => {
+	async (data: IRequestCall, { rejectWithValue }) => {
 		const res = await requestCallAPI.requestCall(data)
-			.then(response => response.status)
-			.catch(reject => thunkAPI.rejectWithValue(reject.message));//выводим ошибку
+			.catch(reject => rejectWithValue(reject.message));//выводим ошибку
 		return res;
 	}
 );

@@ -3,15 +3,12 @@ import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from './store';
 
 
-interface IModal {
-	isModalOpen: boolean;
-};
 
-const initialState: IModal = {
+const initialState = {
 	isModalOpen: false,
 };
 
-
+type ModalType = typeof initialState;
 
 export const modalSlice = createSlice({
 	name: 'modal',

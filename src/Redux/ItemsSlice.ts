@@ -3,15 +3,12 @@ import { CityListType } from '../Types/cityList';
 import { RootState } from './store';
 
 
-interface IItemsData {
-	usersCity: CityListType | null;
+
+const initialState = {
+	usersCity: null as CityListType | null,
 };
 
-const initialState: IItemsData = {
-	usersCity: null,
-};
-
-
+export type IItemsData = typeof initialState;
 
 export const itemsSlice = createSlice({
 	name: 'items',

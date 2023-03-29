@@ -3,16 +3,15 @@ import { delElemFromArray } from '../Utilits/functions';
 import { RootState } from './store';
 
 
-interface IStartData {
-	favorites: string[];
-	itemInCart: string[];
-};
 
-const initialState: IStartData = {
-	favorites: ['2', '2', '2', '4', '2', '2', '2', '2', '2',],
-	itemInCart: ['2', '2', '2', '2', '21', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2',],
+
+const initialState = {
+	favorites: ['2', '2', '2', '4', '2', '2', '2', '2', '2',] as Array<string>,
+	itemInCart: ['2', '2', '2', '2', '21', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2',] as Array<string>,
 
 };
+
+export type IStartData = typeof initialState;
 
 export const actionSlice = createSlice({
 	name: 'action',

@@ -6,15 +6,14 @@ import { setRequestCall } from './Thunk/thunkRequestCall';
 import { getCitysList, getPhoneNumber } from './Thunk/thunkStart';
 
 
-export interface IErrorSlice {
-	errorMessage: string[];
-	isError: boolean;
-};
 
-const initialState: IErrorSlice = {
-	errorMessage: [],
+
+const initialState = {
+	errorMessage: [] as Array<string>,
 	isError: false,
 };
+
+export type IErrorSlice = typeof initialState;
 
 const addErrorGetTelNumber = createAction<string>(getPhoneNumber.rejected.type);
 const addErrorCitysList = createAction<string>(getCitysList.rejected.type);
