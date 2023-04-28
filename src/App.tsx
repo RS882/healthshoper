@@ -39,14 +39,19 @@ const App = () => {
 
   };
   useEffect(() => {
-    Promise.allSettled([
-      dispatch(getPhoneNumber()),
-      dispatch(getCitysList()),
-    ])
-      .then(() => dispatch(сhangeAppInitialized()))
+    const start = async () => {
+      await dispatch(getPhoneNumber());
+      await dispatch(getCitysList());
+      await dispatch(сhangeAppInitialized());
+    };
+
+    start();
+
   }, []);
 
   useEffect(() => {
+
+
     // Catch the rampant load errors
     window.addEventListener('unhandledrejection', catchAllError);
     return () => {

@@ -5,7 +5,7 @@ import { RootState } from './store';
 
 
 const initialState = {
-	usersCity: null as CityListType | null,
+	usersCity: null as string | null,
 };
 
 export type IItemsData = typeof initialState;
@@ -14,7 +14,7 @@ export const itemsSlice = createSlice({
 	name: 'items',
 	initialState,
 	reducers: {
-		changeUsersCity: (state, action: PayloadAction<CityListType>) => {
+		changeUsersCity: (state, action: PayloadAction<string>) => {
 			state.usersCity = action.payload;
 		}
 	},

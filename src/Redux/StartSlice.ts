@@ -118,7 +118,7 @@ export const startSlice = createSlice({
 				state.phoneNumber = payload && payload.match(/^\d{12}$/) ? payload : state.phoneNumber;
 			})
 			.addCase(getListOfCity, (state, action) => {
-				state.citysList = action.payload.citysList ? action.payload.citysList : state.citysList;
+				state.citysList = action.payload.citysList.length > 0 ? action.payload.citysList : state.citysList;
 
 			})
 	}

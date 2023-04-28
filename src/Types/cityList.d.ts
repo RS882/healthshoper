@@ -1,5 +1,5 @@
 
-enum CityList {
+export enum CityList {
 	"Berlin",
 	"Hamburg",
 	"München",
@@ -82,9 +82,12 @@ enum CityList {
 	"Salzgitter",
 	"Kaiserslautern",
 };
+
+
+
 export type CityListType = keyof typeof CityList;
 
-export type CitysList = CityListType[];
+export type CitysList = string[];
 
 //---------------------------------------
 
