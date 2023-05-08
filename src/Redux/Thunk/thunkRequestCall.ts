@@ -1,10 +1,8 @@
 
-import { requestCallAPI } from '../../API/api';
+
+import { requestCallAPI } from '../../API/Service/requestCallAPIService';
 import { IRequestCall } from '../../Types/ARITypes';
 import { createAppAsyncThunk } from './ThunkFunction';
-
-
-
 
 export const setRequestCall = createAppAsyncThunk(
 	'requestCall/setRequestCall',

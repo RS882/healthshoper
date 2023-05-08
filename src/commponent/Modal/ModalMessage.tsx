@@ -5,12 +5,16 @@ import { IModalContainer } from './ModalContainer';
 import Typography from '@mui/material/Typography';
 import { selInfoMessage } from '../../Redux/RequesrCallSlice';
 import { Box } from '@mui/material';
+import { selIsAuth } from '../../Redux/AuthorizationSlice';
 
 
 const ModalMessage: FC<IModalContainer> = ({ title, messages }) => {
 
 	const errorMessage = useAppSelector(selErrorMessage);
-	const infoMessage = useAppSelector(selInfoMessage);
+
+	const isAuth = useAppSelector(selIsAuth);
+	let infoMessage = useAppSelector(selInfoMessage);
+	infoMessage = !infoMessage && isAuth ? ` You are authorized` : infoMessage;
 	const otherMessage = infoMessage ? [infoMessage] : messages;
 	const errorsTitel = errorMessage.length > 0 ? 'Error' : '';
 	const errorMessages = errorMessage.length > 0 ? errorMessage : ['To close the window, click somewhere'];

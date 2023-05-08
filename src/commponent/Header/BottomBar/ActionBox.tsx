@@ -1,12 +1,14 @@
 import React from 'react';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Box from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
 import ActionIconBtn from './ActionIconBtn';
-import { useAppSelector } from '../../../Redux/store';
+import { useAppDispatch, useAppSelector } from '../../../Redux/store';
 import { selNumberOfFarorites, selNumberOfItemInCart } from '../../../Redux/ActionSlice';
+import { selIsAuth, setIsLoginFormOpen } from '../../../Redux/AuthorizationSlice';
 
 const ActionBoxWrapper = styled(Box)`
 	display:flex;
@@ -20,11 +22,14 @@ const ActionBoxWrapper = styled(Box)`
 
 const ActionBox = () => {
 
+	const dispatch = useAppDispatch();
 	const numberOfFavorites = useAppSelector(selNumberOfFarorites);
 	const numberOfItemInCart = useAppSelector(selNumberOfItemInCart);
+	const isAuth = useAppSelector(selIsAuth);
 
 	const onClickLogin = () => {
-		console.log('login')
+		dispatch(setIsLoginFormOpen(true))
+
 	};
 	const showFavorins = () => {
 		console.log('favorits')
@@ -37,9 +42,9 @@ const ActionBox = () => {
 		<ActionBoxWrapper >
 
 			<ActionIconBtn
-				tooltipTitle='Login'
+				tooltipTitle={isAuth ? 'Logout' : 'Login'}
 				onClickBtn={onClickLogin}
-				ActionIcon={PersonOutlineIcon}
+				ActionIcon={isAuth ? AccountCircleIcon : PersonOutlineIcon}
 			/>
 			<ActionIconBtn
 				tooltipTitle='Favorites'

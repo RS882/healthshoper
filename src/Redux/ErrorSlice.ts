@@ -4,6 +4,7 @@ import { addItemToArrayOneDublicat } from '../Utilits/functions';
 import { RootState } from './store';
 import { setRequestCall } from './Thunk/thunkRequestCall';
 import { getCitysList, getPhoneNumber } from './Thunk/thunkStart';
+import { login, regUser } from './Thunk/thunkAuth';
 
 
 
@@ -18,6 +19,8 @@ export type IErrorSlice = typeof initialState;
 const addErrorGetTelNumber = createAction<string>(getPhoneNumber.rejected.type);
 const addErrorCitysList = createAction<string>(getCitysList.rejected.type);
 const addErrorRCall = createAction<string>(setRequestCall.rejected.type);
+const addErrorReg = createAction<string>(regUser.rejected.type);
+const addErrorLogin = createAction<string>(login.rejected.type);
 
 // Reducer of error processing
 const ErrorSlice = createSlice({
@@ -45,6 +48,14 @@ const ErrorSlice = createSlice({
 				state.isError = true;
 			})
 			.addCase(addErrorRCall, (state, action) => {
+				state.errorMessage = addItemToArrayOneDublicat(state.errorMessage, action.payload);
+				state.isError = true;
+			})
+			.addCase(addErrorReg, (state, action) => {
+				state.errorMessage = addItemToArrayOneDublicat(state.errorMessage, action.payload);
+				state.isError = true;
+			})
+			.addCase(addErrorLogin, (state, action) => {
 				state.errorMessage = addItemToArrayOneDublicat(state.errorMessage, action.payload);
 				state.isError = true;
 			})

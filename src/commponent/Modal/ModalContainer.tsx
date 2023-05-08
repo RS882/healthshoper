@@ -9,6 +9,8 @@ import RequestCallForm from './../RequestCall/RequestCall';
 
 import ModalMessage from './ModalMessage';
 import { clearRCallMessage, selIsRequsetCallForm, setRequsetCallFormClose } from './../../Redux/RequesrCallSlice';
+import { selIsLoginFormOpen, setIsLoginFormOpen } from '../../Redux/AuthorizationSlice';
+import LoginForm from '../../Login/LoginForm';
 
 export interface IModalContainer {
 	title?: string;
@@ -24,6 +26,7 @@ const ModalContainer: FC<IModalContainer> = (props) => {
 			dispatch(delErrorMessage());
 			dispatch(clearRCallMessage());
 			dispatch(setRequsetCallFormClose());
+			dispatch(setIsLoginFormOpen(false));
 			dispatch(setModalClose());
 		}
 	};
@@ -31,15 +34,16 @@ const ModalContainer: FC<IModalContainer> = (props) => {
 	const isPreloader = !useAppSelector(selInitializationSuccess);
 	const isOpen = useAppSelector(selIsModal);
 	const isRequestCallFormOpen = useAppSelector(selIsRequsetCallForm);
+	const IsLoginOpen = useAppSelector(selIsLoginFormOpen);
 
 	let contentsOfModalWindow: React.ReactNode = <ModalMessage {...props} />;
 	if (isPreloader) contentsOfModalWindow = <LinearProgress />;
 	if (isRequestCallFormOpen) contentsOfModalWindow = <RequestCallForm />
-
+	if (IsLoginOpen) contentsOfModalWindow = <LoginForm />
 
 	const modalProps = {
 		isPreloader: isPreloader,
-		isOpen: isPreloader || isRequestCallFormOpen || isOpen,
+		isOpen: isPreloader || isRequestCallFormOpen || isOpen || IsLoginOpen,
 		onClose: handleClose,
 	};
 

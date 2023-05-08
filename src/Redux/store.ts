@@ -6,6 +6,7 @@ import actionReducer from "./ActionSlice";
 import errorReducer from "./ErrorSlice";
 import modalReducer from "./ModalSlice";
 import requesrCallReducer from "./RequesrCallSlice";
+import authReducer from "./AuthorizationSlice";
 
 const store = configureStore({
 	reducer: {
@@ -15,6 +16,7 @@ const store = configureStore({
 		error: errorReducer,
 		modal: modalReducer,
 		requesrCall: requesrCallReducer,
+		authorization: authReducer,
 	},
 
 });

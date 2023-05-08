@@ -1,27 +1,27 @@
-import axios, { AxiosResponse } from "axios";
-import { ICityList, IPhoneNumber, IRequestCall } from "../Types/ARITypes";
+import axios, { InternalAxiosRequestConfig } from "axios";
+
+import store from "../Redux/store";
 
 const BASE_URL = `http://localhost:4010/`;
 
 
-const instance = axios.create({
+export const instance = axios.create({
 	baseURL: BASE_URL,
+	// withCredentials: true,
 });
 
-export const startAPI = {
-	phoneNumber: () => instance.get<IPhoneNumber>(`phone_number`)
-		.then(res => {
+instance.interceptors.request.use((config: InternalAxiosRequestConfig): InternalAxiosRequestConfig => {
+	if (config.url === 'auth') {
+		const token: string = localStorage.getItem('token')!;
+		config.headers.set('Authorization', `Bearer ${token}`);
+		// console.log(config);
+	}
+	return config;
+});
 
 
-			return res.data
-		})
 
-	,
-	cityList: () => instance.get<ICityList>(`citys_list`)
-		.then(res => res.data),
-};
 
-export const requestCallAPI = {
-	requestCall: (data: IRequestCall) => instance.post<IRequestCall>(`request_call`, data)
-		.then(response => response.status),
-};
+
+
+
