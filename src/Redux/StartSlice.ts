@@ -98,7 +98,6 @@ const initialState: IStartData = {
 };
 
 const getTelNumber = createAction<IPhoneNumber>(getPhoneNumber.fulfilled.type);
-
 const getListOfCity = createAction<ICityList>(getCitysList.fulfilled.type);
 
 export const startSlice = createSlice({

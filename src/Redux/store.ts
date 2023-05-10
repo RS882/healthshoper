@@ -17,6 +17,7 @@ const store = configureStore({
 		modal: modalReducer,
 		requesrCall: requesrCallReducer,
 		authorization: authReducer,
+
 	},
 
 });

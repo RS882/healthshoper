@@ -19,6 +19,7 @@ import ModalContainer from './commponent/Modal/ModalContainer';
 import { setModalOpen } from './Redux/ModalSlice';
 import { selInfoMessage } from './Redux/RequesrCallSlice';
 import { selIsAuth } from './Redux/AuthorizationSlice';
+import { getUsers, refresh } from './Redux/Thunk/thunkAuth';
 
 
 
@@ -44,7 +45,11 @@ const App = () => {
     const start = async () => {
       await dispatch(getPhoneNumber());
       await dispatch(getCitysList());
-      await dispatch(сhangeAppInitialized());
+      if (localStorage.getItem(`token`)) {
+        await dispatch(refresh())
+        // await dispatch(getUsers())
+      };
+      dispatch(сhangeAppInitialized());
     };
 
     start();

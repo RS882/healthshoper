@@ -1,17 +1,24 @@
 import axios, { InternalAxiosRequestConfig } from "axios";
+import { authAPI } from "./Service/authAPIService";
+import { log } from "console";
 
-import store from "../Redux/store";
+
 
 const BASE_URL = `http://localhost:4010/`;
 
 
 export const instance = axios.create({
 	baseURL: BASE_URL,
-	// withCredentials: true,
+	withCredentials: true,
 });
+export const checkAuthInstance = axios.create({
+	baseURL: BASE_URL,
+	withCredentials: true,
+});;
 
 instance.interceptors.request.use((config: InternalAxiosRequestConfig): InternalAxiosRequestConfig => {
-	if (config.url === 'auth') {
+
+	if (config.url?.startsWith(`/auth`)) {
 		const token: string = localStorage.getItem('token')!;
 		config.headers.set('Authorization', `Bearer ${token}`);
 		// console.log(config);
@@ -19,6 +26,25 @@ instance.interceptors.request.use((config: InternalAxiosRequestConfig): Internal
 	return config;
 });
 
+instance.interceptors.response.use(config => config,
+	async error => {
+
+		const originslRequest = error.config;
+		if (error.response.status === 401 && error.config && !error.config._isRetry) {
+			originslRequest._isRetry = true;
+			try {
+				const response = await authAPI.refresh();
+				localStorage.setItem(`token`, response.accessToken);
+				return instance.request(originslRequest);
+			} catch (error) {
+				console.log(error);
+
+			}
+		}
+		throw error;
+	}
+
+);
 
 
 
