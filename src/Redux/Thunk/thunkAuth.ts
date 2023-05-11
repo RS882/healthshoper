@@ -92,7 +92,7 @@ export const getUsers = createAppAsyncThunk(
 				return respons;
 			})
 			.catch(reject => {
-				console.log(reject);
+				// console.log(reject);
 				return rejectWithValue(reject.message && reject.response?.data?.message)
 			});//выводим ошибку
 

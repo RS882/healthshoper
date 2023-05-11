@@ -26,6 +26,7 @@ const initialState: IAuthorization = {
 const registration = createAction<IUser>(regUser.fulfilled.type);
 
 
+
 const loginUser = createAction<IUser>(login.fulfilled.type);
 const logoutUser = createAction<number>(logout.fulfilled.type);
 const checkAuth = createAction<IUser>(refresh.fulfilled.type);

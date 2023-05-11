@@ -8,7 +8,7 @@ const initialState = {
 	isModalOpen: false,
 };
 
-type ModalType = typeof initialState;
+
 
 export const modalSlice = createSlice({
 	name: 'modal',

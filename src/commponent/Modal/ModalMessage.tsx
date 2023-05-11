@@ -12,9 +12,9 @@ const ModalMessage: FC<IModalContainer> = ({ title, messages }) => {
 
 	const errorMessage = useAppSelector(selErrorMessage);
 
-	const isAuth = useAppSelector(selIsAuth);
+
 	let infoMessage = useAppSelector(selInfoMessage);
-	infoMessage = !infoMessage && isAuth ? ` You are authorized` : infoMessage;
+	// infoMessage = !infoMessage && isAuth ? ` You are authorized` : infoMessage;
 	const otherMessage = infoMessage ? [infoMessage] : messages;
 	const errorsTitel = errorMessage.length > 0 ? 'Error' : '';
 	const errorMessages = errorMessage.length > 0 ? errorMessage : ['To close the window, click somewhere'];

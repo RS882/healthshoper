@@ -46,10 +46,11 @@ const App = () => {
       await dispatch(getPhoneNumber());
       await dispatch(getCitysList());
       if (localStorage.getItem(`token`)) {
+        // debugger
         await dispatch(refresh())
         // await dispatch(getUsers())
       };
-      dispatch(сhangeAppInitialized());
+      await dispatch(сhangeAppInitialized());
     };
 
     start();
@@ -68,7 +69,7 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    const isModal = !!isError || !!isInfoMessage || isAuth;
+    const isModal = !!isError || !!isInfoMessage;
     isModal && dispatch(setModalOpen());
   }, [isError, isInfoMessage, isAuth])
 
@@ -123,17 +124,17 @@ const AppContainer = () => {
     }
       `;
   return (
-    <React.StrictMode >
-      <BrowserRouter basename='/healthshoper'>
-        <Provider store={store}>
-          <ThemeProvider theme={themeDate}>
-            <CssBaseline />
-            <GlobalStyles styles={globalStyles} />
-            <App />
-          </ThemeProvider>
-        </Provider>
-      </BrowserRouter>
-    </React.StrictMode>
+    // <React.StrictMode >
+    <BrowserRouter basename='/healthshoper'>
+      <Provider store={store}>
+        <ThemeProvider theme={themeDate}>
+          <CssBaseline />
+          <GlobalStyles styles={globalStyles} />
+          <App />
+        </ThemeProvider>
+      </Provider>
+    </BrowserRouter>
+    // </React.StrictMode>
   );
 };
 

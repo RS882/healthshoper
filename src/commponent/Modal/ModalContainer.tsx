@@ -11,6 +11,8 @@ import ModalMessage from './ModalMessage';
 import { clearRCallMessage, selIsRequsetCallForm, setRequsetCallFormClose } from './../../Redux/RequesrCallSlice';
 import { selIsLoginFormOpen, setIsLoginFormOpen } from '../../Redux/AuthorizationSlice';
 import LoginForm from '../../Login/LoginForm';
+import { selIsFetching } from '../../Redux/PreloaderSlice';
+
 
 export interface IModalContainer {
 	title?: string;
@@ -35,15 +37,16 @@ const ModalContainer: FC<IModalContainer> = (props) => {
 	const isOpen = useAppSelector(selIsModal);
 	const isRequestCallFormOpen = useAppSelector(selIsRequsetCallForm);
 	const IsLoginOpen = useAppSelector(selIsLoginFormOpen);
+	const IsFetching = useAppSelector(selIsFetching);
 
 	let contentsOfModalWindow: React.ReactNode = <ModalMessage {...props} />;
-	if (isPreloader) contentsOfModalWindow = <LinearProgress />;
+	if (isPreloader || IsFetching) contentsOfModalWindow = <LinearProgress />;
 	if (isRequestCallFormOpen) contentsOfModalWindow = <RequestCallForm />
 	if (IsLoginOpen) contentsOfModalWindow = <LoginForm />
 
 	const modalProps = {
 		isPreloader: isPreloader,
-		isOpen: isPreloader || isRequestCallFormOpen || isOpen || IsLoginOpen,
+		isOpen: isPreloader || isRequestCallFormOpen || isOpen || IsLoginOpen || IsFetching,
 		onClose: handleClose,
 	};
 

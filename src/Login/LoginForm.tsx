@@ -40,14 +40,12 @@ const LoginForm = () => {
 					.min(3, 'Must be at least 3 characters')
 			})}
 			onSubmit={values => {
-				console.log(submitType);
+
 				const data: APIUserLoginModel = { userEmail: values.userEmail, userPassword: values.userPassword };
 				if (submitType === REG_TEXT) dispatch(regUser(data));
 				if (submitType === LOGIN_TEXT) dispatch(login(data));
-				dispatch(setIsLoginFormOpen(false))
-				// const val: IRequestCall = { userName: values.userName, phoneNumber: values.phoneNumber.match(/\d/g).join('') };
-				// dispatch(setRequestCall(val));
-				// closeForm();
+				closeForm();
+
 			}} >
 
 			<FormControl component={Form} sx={{ width: '100%' }}>
