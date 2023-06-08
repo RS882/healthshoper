@@ -66,4 +66,19 @@ export const positionNumberIsNotForFilling = (telTemplate = '+__ ___ ___-__-__')
 	})
 	return position;
 };
+//-------------------------------------------------
+// Makes the first letter of the title line
+export const ucFirst = (str: string): string => {
+	if (!str) return str;
+	return str[0].toUpperCase() + str.slice(1);
+}
 //---------------------------------------
+// Makes the first symbol of each word of the Stark with the title
+
+export const makeUcAllFirst = (item: string): string => {
+	const ucFirst = (str: string): string => {
+		if (!str) return str;
+		return str[0].toUpperCase() + str.slice(1);
+	}
+	return item.split(' ').map(e => ucFirst(e)).join('')
+}

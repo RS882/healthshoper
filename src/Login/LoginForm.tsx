@@ -52,13 +52,15 @@ const LoginForm = () => {
 				<Typography variant="h6" component="h2" sx={{ pb: 2 }}>How to contact you?</Typography>
 				<LoginTextField sx={{ pb: 2 }} name='userEmail' />
 				<LoginTextField sx={{ pb: 2 }} name='userPassword' />
-				<Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', columnGap: 3 }}>
+				<Box sx={[{ display: 'grid', rowGap: 3 },
+				(theme) => ({ [theme.breakpoints.up('desktop')]: { gridTemplateColumns: '1fr 1fr 1fr', columnGap: 3 }, })
+				]}	>
 					<Button type="submit" variant="contained" onClick={() => setSubmitType(LOGIN_TEXT)}>Login</Button>
 					<Button type="submit" variant="outlined" onClick={() => setSubmitType(REG_TEXT)}>Registration</Button>
 					<Button onClick={closeForm} variant="outlined">Cancel</Button>
 				</Box>
-			</FormControl>
-		</Box>
+			</FormControl >
+		</Box >
 	);
 };
 

@@ -73,7 +73,7 @@ export const refresh = createAppAsyncThunk(
 				return respons.user;
 			})
 			.catch(reject => {
-
+				console.log(reject);
 				return rejectWithValue(reject.message && reject.response?.data?.message)
 			});//выводим ошибку
 
@@ -92,11 +92,11 @@ export const getUsers = createAppAsyncThunk(
 				return respons;
 			})
 			.catch(reject => {
-				// console.log(reject);
+				//console.log(reject);
 				return rejectWithValue(reject.message && reject.response?.data?.message)
 			});//выводим ошибку
 
-		// console.log(res);
+		console.log(res);
 
 		return res;
 	}

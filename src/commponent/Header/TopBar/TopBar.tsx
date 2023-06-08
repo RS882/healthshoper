@@ -1,13 +1,11 @@
 import { Box, Divider, IconButton, List, Toolbar } from '@mui/material';
 import React, { useState } from 'react';
 
-import Button from '@mui/material/Button';
-import logo from '../../../assets/logo/logo.svg';
 import { useNavigate } from 'react-router-dom';
 import ChooseICity from './ChooseICity';
 import TelNumber from './TelNumber/TelNumber';
 import NavMenu from './NavMenu/NavMenu';
-import { navMenuItem } from './navMenu';
+
 import { changeFirstSimbolToUpperCase } from '../../../Utilits/functions';
 import MenuIcon from '@mui/icons-material/Menu';
 import { styled } from '@mui/material/styles';
@@ -18,6 +16,8 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import { useAppDispatch } from './../../../Redux/store';
 import { setRequsetCallFormOpen } from '../../../Redux/RequesrCallSlice';
+import { navMenuItem } from '../../../Models/navMenuModel.ts/navMenu';
+import Logo from '../../Logo/logo';
 
 
 const StyledBox = styled(Box)((props) => ({
@@ -37,12 +37,12 @@ const TopBar = () => {
 	const [openBurger, setOpenBurger] = useState(false);
 
 
-	const onClockRequestCall = () => {
+	const onClickRequestCall = () => {
 		dispatch(setRequsetCallFormOpen())
 
 	};
 
-	const listElems = navMenuItem.map((e, i) => <ListItem key={e + i} disablePadding>
+	const listElems: JSX.Element[] = navMenuItem.map((e, i) => <ListItem key={e + i} disablePadding>
 		<ListItemButton onClick={() => {
 			navigate(`/${e}`);
 			setOpenBurger(false);
@@ -59,17 +59,14 @@ const TopBar = () => {
 			(theme) => ({ [theme.breakpoints.up('tablet')]: { height: 83, }, }),
 			{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }]}>
 
-
-			<Box display='flex' alignItems='center'>
-				<Button onClick={() => navigate('/')} sx={{ maxWidth: 296, maxHeight: 33, }}>
-					<Box component='img' sx={{ width: 1, height: 1, }} src={logo} width='296' height='33' alt='logo' />
-				</Button>
+			<Box >
+				<Logo />
 			</Box>
 
 			<StyledBox>	<ChooseICity /></StyledBox>
 
 			<StyledBox>
-				<TelNumber onClickRequestCall={onClockRequestCall} />
+				<TelNumber onClickRequestCall={onClickRequestCall} />
 			</StyledBox>
 
 			<StyledBox>
@@ -96,7 +93,7 @@ const TopBar = () => {
 					<ListItem><ChooseICity /></ListItem>
 					<Divider />
 					<ListItem>
-						<TelNumber onClickRequestCall={onClockRequestCall} />
+						<TelNumber onClickRequestCall={onClickRequestCall} />
 					</ListItem>
 					<Divider />
 					{listElems}

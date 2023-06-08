@@ -13,9 +13,9 @@ const CallUsLink: FC<ICallUsLink> = ({ digNum, children, mobileStyle, destopStyl
 
 
 	return (
-		<Tooltip title='Call us'>
+		<Tooltip title='Call us' >
 			<Link href={`tel:${digNum}`} underline="none"
-				sx={[{ fontWeight: 500, },
+				sx={[{ fontWeight: 500, textAlign: 'center' },
 				theme => ({
 					color: theme.colors.black,
 					[theme.breakpoints.up('mobile')]: mobileStyle,

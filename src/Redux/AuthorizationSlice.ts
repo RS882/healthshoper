@@ -4,6 +4,7 @@ import { PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from './store';
 import { getUsers, login, logout, refresh, regUser } from './Thunk/thunkAuth';
 import { IUser } from '../Models/IUser';
+import { log } from 'console';
 
 
 
@@ -31,6 +32,7 @@ const loginUser = createAction<IUser>(login.fulfilled.type);
 const logoutUser = createAction<number>(logout.fulfilled.type);
 const checkAuth = createAction<IUser>(refresh.fulfilled.type);
 const getAllUsers = createAction<IUser[]>(getUsers.fulfilled.type);
+const errorGetAllUsers = createAction<string>(getUsers.rejected.type);
 
 const AuthorizationSlice = createSlice({
 	name: 'authorization',
@@ -66,7 +68,9 @@ const AuthorizationSlice = createSlice({
 			})
 			.addCase(getAllUsers, (state, action) => {
 				state.users = action.payload;
-
+			})
+			.addCase(errorGetAllUsers, (state, action) => {
+				state.isAuth = false;
 			})
 	}
 

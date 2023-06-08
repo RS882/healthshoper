@@ -6,6 +6,7 @@ import { log } from "console";
 
 const BASE_URL = `http://localhost:4010/`;
 
+// const BASE_URL = `https://demo-server-021.herokuapp.com/`;
 
 export const instance = axios.create({
 	baseURL: BASE_URL,
@@ -44,6 +45,15 @@ instance.interceptors.response.use(config => config,
 		throw error;
 	}
 
+	// 	(config: InternalAxiosRequestConfig): InternalAxiosRequestConfig => {
+
+	// 	if (config.url?.startsWith(`/auth`)) {
+	// 		const token: string = localStorage.getItem('token')!;
+	// 		config.headers.set('Authorization', `Bearer ${token}`);
+	// 		// console.log(config);
+	// 	}
+	// 	return config;
+	// }
 );
 
 
