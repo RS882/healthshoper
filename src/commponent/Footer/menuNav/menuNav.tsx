@@ -1,7 +1,6 @@
 import { Button, Menu, MenuItem } from '@mui/material';
 import React, { FC, useState } from 'react';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import { navMenuItem } from './../../../Models/navMenuModel.ts/navMenu';
+
 import { useNavigate } from 'react-router-dom';
 
 import { makeUcAllFirst, ucFirst } from '../../../Utilits/functions';

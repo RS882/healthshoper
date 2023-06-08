@@ -1,94 +1,90 @@
 import React from 'react';
-import { Box, Button, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import Container from '@mui/material/Container';
-import Link from '@mui/material/Link';
-import WhatsAppIcon from '@mui/icons-material/WhatsApp';
-import InstagramIcon from '@mui/icons-material/Instagram';
-import TelegramIcon from '@mui/icons-material/Telegram';
-import SocialIcon from './menuNav/SocialIcon';
-import { useNavigate } from 'react-router-dom';
+
+
 
 import MenuNav from './menuNav/menuNav';
 import { navMenuItem } from '../../Models/navMenuModel.ts/navMenu';
 import { CatalogModel } from '../../Models/catalog/catalogModel';
-import { useAppDispatch, useAppSelector } from '../../Redux/store';
-import { selPhoneNummberForCall } from '../../Redux/StartSlice';
-import { getFormatedTelNumber } from '../../Utilits/functions';
-import CallUsLink from '../Header/TopBar/TelNumber/CallUsLink';
-import { setRequsetCallFormOpen } from '../../Redux/RequesrCallSlice';
+
 
 import Logo from '../Logo/logo';
+import ContactBlock from './ContactBlock';
+import { styled } from '@mui/material/styles';
+import MenuNavLaptop from './menuNav/MenuNavLaptop';
+
+
+const MobailBox = styled(Box)((props) => ({
+	[props.theme.breakpoints.up('mobile')]: { display: 'grid', },
+	[props.theme.breakpoints.up('laptop')]: { display: 'none', },
+}));
+
+const LaptopBox = styled(Box)((props) => ({
+	[props.theme.breakpoints.up('mobile')]: { display: 'none', },
+	[props.theme.breakpoints.up('laptop')]: { display: 'grid', },
+}));
 
 
 const Footer = () => {
 
-	const dispatch = useAppDispatch();
-	const navigate = useNavigate();
-	const telNumber = useAppSelector(selPhoneNummberForCall);
-
-	const [textNum, digNum] = getFormatedTelNumber(telNumber!);
-
-	const EMAIL = 'exemp@mail.com'
-
-	const onClickRequestCall = () => {
-		dispatch(setRequsetCallFormOpen())
-
-	};
-
+	const rsElem: JSX.Element = <Typography sx={(thema) => ({ color: thema.colors.grayBlue1 })}>© 2023 rs.com</Typography>
 
 	return (
 		<Box component='footer' sx={[
 			{ zIndex: 'appBar', }, (thema) => ({ backgroundColor: thema.colors.white, })]}>
+
 			<Container maxWidth={'maxWidth'} >
-				<Box sx={[{ display: 'grid', rowGap: 3, p: 3 }]}>
+				<MobailBox sx={[{ rowGap: 3, p: 3 }]}>
 					<MenuNav btnText='Menu' menuItemText={navMenuItem} />
 					<MenuNav btnText='Catalog' menuItemText={CatalogModel} />
-
-					<CallUsLink
-						digNum={digNum}
-						mobileStyle={{ display: 'block' }}
-						destopStyle={{ display: 'block' }}
-					>{textNum}
-					</CallUsLink>
-
-					<Button
-						onClick={onClickRequestCall}
-						size='large'
-						variant='outlined'>REQUEST A CALL</Button>
-
-					<Box sx={[{ display: 'grid', rowGap: 1, textAlign: 'center' }]}>
-						<Typography>Mon-Fri: 10:00 - 20:00</Typography>
-						<Typography>Sat: 10:00 - 18:00</Typography>
-					</Box>
-
-					<Box sx={{ textAlign: 'center' }}>
-						<Link href={`mailto:${EMAIL}`} >{EMAIL}</Link>
-					</Box>
-
-					<Box sx={[{ textAlign: 'center' }]}	>
-						<SocialIcon icon={WhatsAppIcon} tooltipTitle='WhatApp' onClickBtn={() => { }} />
-						<SocialIcon icon={InstagramIcon} tooltipTitle='Instagram' onClickBtn={() => { }} />
-						<SocialIcon icon={TelegramIcon} tooltipTitle='Telegram' onClickBtn={() => { }} />
-
-					</Box>
-
+					<ContactBlock />
 					<Box sx={[{ textAlign: 'center' }]}>
 						<Logo />
 					</Box>
-
 					<Box sx={[{ textAlign: 'center' }]}>
-						<Typography sx={(thema) => ({ color: thema.colors.grayBlue1 })}>© 2023 rs.com</Typography>
+						{rsElem}
 					</Box>
-				</Box>
+				</MobailBox>
+
+				<LaptopBox sx={
+					{ gridTemplateColumns: '1fr 1fr 1fr', gridTemplateRows: 'auto auto', p: 3, rowGap: 3 }
+				}>
+					<Box sx={{ gridColumn: '1/2', gridRow: '1/2' }}>
+						<MenuNavLaptop items={CatalogModel} />
+					</Box>
+
+					<Box sx={{ gridColumn: '2/3', gridRow: '1/2' }}>
+						<MenuNavLaptop items={navMenuItem} />
+					</Box>
+
+					<Box sx={{ gridColumn: '3/4', gridRow: '1/2', display: 'grid', rowGap: 3 }}>
+						<ContactBlock />
+					</Box>
+
+					<Box sx={{ gridColumn: '1/4', gridRow: '2/3', display: 'grid', rowGap: 1 }}>
+						<Box>
+							<Logo />
+						</Box>
+						<Box >
+							{rsElem}
+						</Box>
+					</Box>
+
+				</LaptopBox>
 
 
 			</Container>
+
 			<Box sx={[{ p: 2 }, (thema) => ({ backgroundColor: thema.bgColors.lichtBlue, })]} >
-				<Typography sx={(thema) => ({ color: thema.colors.grayBlue1 })}>
-					Copying of all constituent parts of the site in any form without the written permission of the copyright holders is prohibited.
-					The site uses cookie technology. By using the site, you agree to the terms of the use of cookies, and also consent to the processing of personal data
-				</Typography>
+				<Container maxWidth={'maxWidth'} >
+					<Typography sx={(thema) => ({ color: thema.colors.grayBlue1 })}>
+						Copying of all constituent parts of the site in any form without the written permission of the copyright holders is prohibited.
+						The site uses cookie technology. By using the site, you agree to the terms of the use of cookies, and also consent to the processing of personal data
+					</Typography>
+				</Container>
 			</Box >
+
 		</Box >
 	);
 };
