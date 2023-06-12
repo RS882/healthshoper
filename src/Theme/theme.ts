@@ -9,7 +9,7 @@ export const themeDate = createTheme({
 		blue3: '#2B7BC6',
 		greenBlue: '#3BB9B8',
 		yellow: '#FFD600',
-		red: '#FFD600',
+		red: '#EA1649',
 		grayBlue: '#B0C0C9',
 		grayBlue1: '#99A3A9',
 		grayLine: '#E0E6EC',
