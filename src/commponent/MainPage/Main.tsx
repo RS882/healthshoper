@@ -8,8 +8,7 @@ import Item from './Item/Item';
 
 export const styleMain = {
 	mt: 30,
-	fontSize: 50,
-	fontWeight: 'fontWeightBold',
+
 	zIndex: 'appBar',
 	border: 1,
 

@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import { Box, Button, CardActionArea, IconButton, keyframes } from '@mui/material';
+import { Badge, Box, Button, CardActionArea, IconButton, Rating, Typography, keyframes } from '@mui/material';
 import { itemDate } from './itemDate';
 import { IItem } from '../../../Models/item/itemModel';
 import Banner from './banner';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
+import Grid from '@mui/material/Unstable_Grid2/Grid2';
 
 
 const scale = keyframes`
@@ -22,8 +24,11 @@ const scale = keyframes`
 
 const Item = () => {
 
-	const date: IItem = JSON.parse(itemDate)
-	date.banners = ['hit', 'promotion']
+	const date: IItem = JSON.parse(itemDate);
+	date.banners = ['hit', 'promotion'];
+	date.oldPreise = 101.23
+
+	console.log(date);
 
 	const banners = date.banners.map((e, i) => <Banner text={e} key={e + i} />);
 
@@ -38,19 +43,27 @@ const Item = () => {
 
 	};
 
+	const onclickCount = () => {
+		console.log('Count');
+	};
+
+
+
+
+
 	return (
 		<Card sx={{ width: 345, border: 1 }}>
 
 			<CardContent className='item-card' sx={{ position: 'relative', }}>
-
-
 
 				<CardMedia
 					component="img"
 					height="298"
 					image={date.image}
 					alt={date.title}
+					sx={{ mb: 2 }}
 				/>
+
 				<Box sx={{
 					position: 'absolute',
 					top: '20px',
@@ -59,6 +72,7 @@ const Item = () => {
 				}}>
 					{banners}
 				</Box>
+
 				<Box sx={{
 					width: '100%',
 					p: 1,
@@ -76,7 +90,6 @@ const Item = () => {
 							animation: `${scale} 0.5s `
 						}}>QUICK VIEW</Button>
 
-
 				</Box>
 
 				<IconButton onClick={onClickFavorite} sx={{
@@ -92,10 +105,39 @@ const Item = () => {
 					/>
 				</IconButton>
 
+				<Box sx={{
+					display: 'flex',
+					alignItems: 'center',
+				}}>
+					<Rating name="half-rating" defaultValue={+date.rating.rate} precision={0.5} readOnly />
+
+					<IconButton onClick={onclickCount}>
+						<Badge badgeContent={date.rating.count} color='info' >
+							<ChatBubbleOutlineIcon />
+						</Badge>
+					</IconButton>
+				</Box>
+
+				<Typography sx={[(thema) => ({
+					color: thema.colors.black,
+					'.item-card:hover &': { color: thema.colors.blue2 },
+				})]}>
+					{date.title}
+				</Typography>
+				{/* <Grid container spacing={2}>
+					<Grid xs={6}>
+						1
+					</Grid>
+
+					<Grid xs={6}>
+						2
+					</Grid>
+
+				</Grid> */}
+
+
 			</CardContent>
 
-
-			Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolore nobis voluptatem laboriosam velit. Repellendus eveniet minima reiciendis quidem sed excepturi nemo deleniti delectus dignissimos porro accusantium, sit ut obcaecati quam?
 
 		</Card>
 	);
