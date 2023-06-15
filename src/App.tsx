@@ -71,7 +71,7 @@ const App = () => {
   useEffect(() => {
     const isModal = !!isError || !!isInfoMessage;
     isModal && dispatch(setModalOpen());
-  }, [isError, isInfoMessage, isAuth])
+  }, [isError, isInfoMessage, isAuth]);
 
   return (<>
     {isAppStart ? <>

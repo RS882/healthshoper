@@ -13,6 +13,7 @@ import Logo from '../Logo/logo';
 import ContactBlock from './ContactBlock';
 import { styled } from '@mui/material/styles';
 import MenuNavLaptop from './menuNav/MenuNavLaptop';
+import AccorNavMenu from './menuNav/AccorNavMenu';
 
 
 const MobailBox = styled(Box)((props) => ({
@@ -36,8 +37,8 @@ const Footer = () => {
 
 			<Container maxWidth={'maxWidth'} >
 				<MobailBox sx={[{ rowGap: 3, p: 3 }]}>
-					<MenuNav btnText='Menu' menuItemText={navMenuItem} />
-					<MenuNav btnText='Catalog' menuItemText={CatalogModel} />
+					<AccorNavMenu btnText='Menu' menuItemText={navMenuItem} />
+					<AccorNavMenu btnText='Catalog' menuItemText={CatalogModel} />
 					<ContactBlock />
 					<Box sx={[{ textAlign: 'center' }]}>
 						<Logo />

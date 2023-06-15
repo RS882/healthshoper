@@ -2,6 +2,7 @@ import { Box, Container } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import React from 'react';
 import Item from './Item/Item';
+import Items from './Item/Items';
 
 
 
@@ -26,9 +27,7 @@ const Main = () => {
 
 		<Box component='main' sx={{ zIndex: 'appBar', }}>
 			<Container maxWidth={'maxWidth'} sx={{ ...styleMain, }}>
-				{/* MAINPAGE
 
-				Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore nesciunt iste enim, facilis quaerat, ipsam velit aliquam fuga, sunt corporis incidunt quae mollitia tempora sequi possimus! Consequuntur inventore sunt iure! */}
 				<Item />
 
 			</Container>
