@@ -1,6 +1,6 @@
 import axios, { InternalAxiosRequestConfig } from "axios";
 import { authAPI } from "./Service/authAPIService";
-import { log } from "console";
+
 
 
 

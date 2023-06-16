@@ -8,6 +8,7 @@ import styled from '@emotion/styled';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import { themeDate } from '../../Theme/theme';
+import { IItem } from '../../Models/item/itemModel';
 
 
 
@@ -53,11 +54,14 @@ const PrevArrow: FC<{ onClick?: React.MouseEventHandler<HTMLDivElement> }> = ({ 
 	);
 };
 
-const SliderFromItems = () => {
+const SliderFromItems: FC<{ items: IItem[] }> = ({ items }) => {
+
+	const itemElems = items.map((e, i) => <Item item={e} key={e.title + i} />)
+
+
 	const { tablet, laptop, } = themeDate.breakpoints.values;
 
 	const settings = {
-
 		infinite: true,
 		speed: 1500,
 		slidesToShow: 4,
@@ -87,15 +91,7 @@ const SliderFromItems = () => {
 	return (
 		<Box >
 			<Slider lazyLoad="anticipated" {...settings}>
-				<Item />
-				<Item />
-				<Item />
-				<Item />
-				<Item />
-				<Item />
-				<Item />
-				<Item />
-				<Item />
+				{itemElems}
 
 			</Slider>
 		</Box>

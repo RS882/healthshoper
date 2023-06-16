@@ -3,6 +3,9 @@ import { styled } from '@mui/material/styles';
 import React from 'react';
 import Item from './Item/Item';
 import SliderFromItems from '../Slider/SliderFromItems';
+import { useAppSelector } from '../../Redux/store';
+import { selItems } from '../../Redux/ItemsSlice';
+import { IItem } from '../../Models/item/itemModel';
 
 
 
@@ -22,7 +25,7 @@ export const styleMain = {
 const Main = () => {
 
 
-
+	const products: IItem[] = useAppSelector(selItems);
 
 	return (
 
@@ -30,7 +33,7 @@ const Main = () => {
 			<Container maxWidth={'maxWidth'} sx={{ ...styleMain, }}>
 
 
-				<SliderFromItems />
+				<SliderFromItems items={products} />
 			</Container>
 		</Box>
 

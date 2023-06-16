@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -22,16 +22,14 @@ const scale = keyframes`
 `;
 
 
-const Item = () => {
-	//=====================
-	const item: IItem = JSON.parse(itemDate);
-
-	item.banners = ['hit', 'promotion'];
-	item.oldPreise = 101.23
-	//==================================
+const Item: FC<{ item: IItem }> = ({ item }) => {
 
 
-	const addCurrency = (item: string | number, currency = '$'): string | null => item ? `${item} ${currency}` : null;
+
+	const addCurrency = (item: string | number, currency = '$'): string | null => {
+
+		return item ? `${(+item).toFixed(2)} ${currency}` : null;
+	}
 
 	const banners: JSX.Element[] | null = item.banners && item.banners.length > 0 ? item.banners.map((e, i) => <Banner text={e} key={e + i} />) : null;
 
@@ -71,7 +69,7 @@ const Item = () => {
 					height="298"
 					image={item.image}
 					alt={item.title}
-					sx={{ mb: 2 }}
+					sx={{ mb: 2, height: '298px' }}
 				/>
 
 				<Box sx={{
@@ -128,7 +126,7 @@ const Item = () => {
 					</IconButton>
 				</Box>
 
-				<Typography sx={[{ mb: 2 }, (thema) => ({
+				<Typography sx={[{ mb: 2, height: '60px' }, (thema) => ({
 					color: thema.colors.black,
 					'.item-card:hover &': { color: thema.colors.blue2 },
 				})]}>

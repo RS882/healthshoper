@@ -20,6 +20,7 @@ import { setModalOpen } from './Redux/ModalSlice';
 import { selInfoMessage } from './Redux/RequesrCallSlice';
 import { selIsAuth } from './Redux/AuthorizationSlice';
 import { getUsers, refresh } from './Redux/Thunk/thunkAuth';
+import { getCategoies, getItemsWithLimit } from './Redux/Thunk/thunkItems';
 
 
 
@@ -45,12 +46,14 @@ const App = () => {
     const start = async () => {
       await dispatch(getPhoneNumber());
       await dispatch(getCitysList());
+      await dispatch(getItemsWithLimit(10));
+      await dispatch(getCategoies())
       if (localStorage.getItem(`token`)) {
         // debugger
         await dispatch(refresh())
         // await dispatch(getUsers())
       };
-      await dispatch(сhangeAppInitialized());
+      dispatch(сhangeAppInitialized());
     };
 
     start();
