@@ -34,7 +34,7 @@ const BottomBar = () => {
 	};
 
 	return (
-		<Toolbar disableGutters sx={[{ display: 'flex', height: '65px' }, (theme) => ({ backgroundColor: theme.bgColors.blueHeaderBg, })]} >
+		<Toolbar disableGutters sx={[{ display: 'flex', }, (theme) => ({ backgroundColor: theme.bgColors.blueHeaderBg, })]} >
 			<MoreVertBtn onClick={() => setCatalogMenu(true)}>
 				<MoreVertIcon />
 			</MoreVertBtn>

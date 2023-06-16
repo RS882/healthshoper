@@ -26,7 +26,7 @@ const StyledText = styled(Typography)`
 const StyledButton = styled(ButtonBase)`
 	display: flex;
 	min-height:100%;
-	padding: 20px 24px ;
+	padding: 10px 14px ;
 	text-transform:uppercase;
 	width: 100%;
 `;

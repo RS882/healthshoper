@@ -2,13 +2,14 @@ import { Box, Container } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import React from 'react';
 import Item from './Item/Item';
+import SliderFromItems from '../Slider/SliderFromItems';
 
 
 
 
 
 export const styleMain = {
-	mt: 30,
+	mt: '130px',
 
 	zIndex: 'appBar',
 	border: 1,
@@ -28,8 +29,8 @@ const Main = () => {
 		<Box component='main' sx={{ zIndex: 'appBar', }}>
 			<Container maxWidth={'maxWidth'} sx={{ ...styleMain, }}>
 
-				<Item />
 
+				<SliderFromItems />
 			</Container>
 		</Box>
 

@@ -13,7 +13,7 @@ const Header = () => {
 	return (
 		<AppBar component='header' position='fixed' color='transparent' elevation={0} sx={{ backdropFilter: ' blur(10px)', zIndex: 'drawer', }}>
 			<Container maxWidth={'maxWidth'} >
-				<Box sx={{ mt: 3, }} >
+				<Box sx={{ mt: 1, }} >
 					<TopBar />
 					<BottomBar />
 				</Box>

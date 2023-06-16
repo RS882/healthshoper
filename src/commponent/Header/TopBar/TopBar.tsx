@@ -56,7 +56,7 @@ const TopBar = () => {
 
 	return (
 		<Toolbar disableGutters sx={[
-			(theme) => ({ [theme.breakpoints.up('tablet')]: { height: 83, }, }),
+			(theme) => ({ [theme.breakpoints.up('tablet')]: { height: 53, }, }),
 			{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }]}>
 
 			<Box >

@@ -8,7 +8,7 @@ import { IItem } from '../../../Models/item/itemModel';
 import Banner from './banner';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
-
+import ButtonBase from '@mui/material/ButtonBase';
 
 
 const scale = keyframes`
@@ -55,12 +55,14 @@ const Item = () => {
 		console.log('to cart');
 	};
 
-
+	const onClickItemTitle = () => {
+		console.log('title');
+	};
 
 
 
 	return (
-		<Card sx={{ width: 345, border: 1 }}>
+		<Card >
 
 			<CardContent className='item-card' sx={{ position: 'relative', }}>
 
@@ -87,7 +89,7 @@ const Item = () => {
 					position: 'absolute',
 					top: '50%',
 					left: '0',
-					transform: 'translateY(-100%)',
+					transform: 'translateY(-150%)',
 				}}>
 					<Button variant="contained" className='item' onClick={onClickImg}
 						sx={{
@@ -130,7 +132,15 @@ const Item = () => {
 					color: thema.colors.black,
 					'.item-card:hover &': { color: thema.colors.blue2 },
 				})]}>
-					{item.title}
+					<ButtonBase sx={{
+						textAlign: 'left',
+						fontStyle: 'normal',
+						fontWeight: '500',
+						fontSize: '14px',
+						lineHeight: '20px',
+					}} onClick={onClickItemTitle}>
+						{item.title}
+					</ButtonBase>
 				</Typography>
 
 				<Box sx={{
