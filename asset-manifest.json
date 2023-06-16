@@ -1,13 +1,20 @@
 {
   "files": {
-    "main.js": "/healthshoper/static/js/main.6c5d477f.js",
+    "main.css": "/healthshoper/static/css/main.a7c3df22.css",
+    "main.js": "/healthshoper/static/js/main.65a9c691.js",
     "static/js/787.062c18ee.chunk.js": "/healthshoper/static/js/787.062c18ee.chunk.js",
     "static/media/logo.svg": "/healthshoper/static/media/logo.83f9906c21b1759acb3e26a1b9a494d2.svg",
+    "static/media/slick.svg": "/healthshoper/static/media/slick.2630a3e3eab21c607e21.svg",
+    "static/media/slick.eot": "/healthshoper/static/media/slick.a4e97f5a2a64f0ab1323.eot",
+    "static/media/slick.ttf": "/healthshoper/static/media/slick.c94f7671dcc99dce43e2.ttf",
+    "static/media/slick.woff": "/healthshoper/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/healthshoper/index.html",
-    "main.6c5d477f.js.map": "/healthshoper/static/js/main.6c5d477f.js.map",
+    "main.a7c3df22.css.map": "/healthshoper/static/css/main.a7c3df22.css.map",
+    "main.65a9c691.js.map": "/healthshoper/static/js/main.65a9c691.js.map",
     "787.062c18ee.chunk.js.map": "/healthshoper/static/js/787.062c18ee.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.6c5d477f.js"
+    "static/css/main.a7c3df22.css",
+    "static/js/main.65a9c691.js"
   ]
 }
